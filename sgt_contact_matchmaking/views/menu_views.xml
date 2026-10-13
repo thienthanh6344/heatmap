@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- TOP / MAIN MENU UNDER CONTACTS -->
+    <menuitem id="menu_sgt_matchmaking_root"
+              name="Match Making"
+              parent="contacts.menu_contacts"
+              sequence="25"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_sgt_matchmaking_compare"
+              name="Compare Contacts"
+              parent="menu_sgt_matchmaking_root"
+              action="action_sgt_contact_match_wizard"
+              sequence="10"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_sgt_matchmaking_recommendation"
+              name="Find Matching Companies"
+              parent="menu_sgt_matchmaking_root"
+              action="action_sgt_matchmaking_recommendation_wizard"
+              sequence="15"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_sgt_matchmaking_history"
+              name="Match History"
+              parent="menu_sgt_matchmaking_root"
+              action="action_sgt_contact_match_history"
+              sequence="20"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_sgt_matchmaking_analytics"
+              name="Match Analytics"
+              parent="menu_sgt_matchmaking_root"
+              action="action_sgt_contact_match_analytics"
+              sequence="30"
+              groups="base.group_user"/>
+
+    <!-- SHORTCUT MENU UNDER CRM ROOT -->
+    <menuitem id="menu_crm_matchmaking_compare"
+              name="Match Making"
+              parent="crm.crm_menu_root"
+              action="action_sgt_contact_match_wizard"
+              sequence="4"
+              groups="base.group_user"/>
+
+    <!-- VIETNAM PROJECT HEATMAP MENUS UNDER CRM -->
+    <menuitem id="menu_project_heatmap_root"
+              name="Project Heatmap"
+              parent="crm.crm_menu_root"
+              sequence="5"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_project_heatmap_dashboard"
+              name="Vietnam Project Heatmap"
+              parent="menu_project_heatmap_root"
+              action="action_sgt_project_heatmap_dashboard"
+              sequence="10"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_project_heatmap_projects"
+              name="Projects List"
+              parent="menu_project_heatmap_root"
+              action="action_sgt_project_heatmap_records"
+              sequence="20"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_project_heatmap_attributes"
+              name="Project Attributes"
+              parent="menu_project_heatmap_root"
+              action="action_sgt_project_attribute"
+              sequence="30"
+              groups="base.group_user"/>
+
+    <!-- SHORTCUT UNDER CONTACTS ROOT -->
+    <menuitem id="menu_contacts_project_heatmap_dashboard"
+              name="Vietnam Project Heatmap"
+              parent="contacts.menu_contacts"
+              action="action_sgt_project_heatmap_dashboard"
+              sequence="28"
+              groups="base.group_user"/>
+</odoo>

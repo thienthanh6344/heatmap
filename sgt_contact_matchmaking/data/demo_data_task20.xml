@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ================================================================= -->
+        <!-- TASK 20 DEMO DATASET: MATCHMAKING RECOMMENDATION                   -->
+        <!-- Source Contact + Candidates covering 95, 75, 70, 55, 50, 45, 40... -->
+        <!-- ================================================================= -->
+
+        <!-- SOURCE CONTACT: ABC Trading Co., Ltd -->
+        <record id="demo_task20_source_partner" model="res.partner">
+            <field name="name">ABC Trading Co., Ltd (Task 20 Source)</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Electronics, Software</field>
+            <field name="x_product_details">High-end Smart Home IoT controllers, automated sensors, and cloud management software platforms.</field>
+            <field name="industry_id" ref="base.res_partner_industry_J"/>
+            <field name="x_fb_industry">IT/Communication</field>
+            <field name="x_event">Vietnam Expo 2026, Saigon Tech Fair</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="email">source.abctrading@example.com</field>
+            <field name="phone">0901999888</field>
+            <field name="city">Ho Chi Minh City</field>
+        </record>
+
+        <!-- CANDIDATE 1: 95 POINTS (MAXIMUM: Cat +30, Ind +20, Event +20, Role +20, Country +5) -->
+        <record id="demo_task20_candidate_1_95" model="res.partner">
+            <field name="name">XYZ Electronics Corp</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Electronics, Robotics</field>
+            <field name="x_product_details">OEM/ODM Manufacturer of smart IoT controllers and industrial robotics components.</field>
+            <field name="industry_id" ref="base.res_partner_industry_J"/>
+            <field name="x_fb_industry">IT/Communication</field>
+            <field name="x_event">Vietnam Expo 2026</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="email">contact@xyzelectronics.vn</field>
+            <field name="phone">0902111222</field>
+            <field name="city">Hanoi</field>
+        </record>
+
+        <!-- CANDIDATE 2: 75 POINTS (Cat +30, Ind +20, Event +20, Country +5) -->
+        <record id="demo_task20_candidate_2_75" model="res.partner">
+            <field name="name">Global Tech Supplies</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Electronics</field>
+            <field name="x_product_details">Procurement partner for consumer electronics and displays.</field>
+            <field name="industry_id" ref="base.res_partner_industry_J"/>
+            <field name="x_fb_industry">IT/Communication</field>
+            <field name="x_event">Vietnam Expo 2026</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="email">sales@globaltechsupplies.com</field>
+            <field name="phone">0903222333</field>
+            <field name="city">Da Nang</field>
+        </record>
+
+        <!-- CANDIDATE 3: 70 POINTS (Cat +30, Event +20, Role +20) -->
+        <record id="demo_task20_candidate_3_70" model="res.partner">
+            <field name="name">Mekong Software Solutions</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Software, Cloud</field>
+            <field name="x_product_details">Custom SaaS development and cloud backend architectures.</field>
+            <field name="industry_id" ref="base.res_partner_industry_C"/>
+            <field name="x_event">Saigon Tech Fair</field>
+            <field name="country_id" ref="base.jp"/>
+            <field name="email">info@mekongsoftware.jp</field>
+            <field name="phone">0904333444</field>
+            <field name="city">Tokyo</field>
+        </record>
+
+        <!-- CANDIDATE 4: 55 POINTS (Cat +30, Role +20, Country +5) -->
+        <record id="demo_task20_candidate_4_55" model="res.partner">
+            <field name="name">Vina Smart Devices Ltd</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Electronics</field>
+            <field name="x_product_details">Retail electronics and peripheral distributors.</field>
+            <field name="industry_id" ref="base.res_partner_industry_G"/>
+            <field name="x_event">Bangkok Trade Show</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="email">contact@vinasmart.vn</field>
+            <field name="phone">0905444555</field>
+            <field name="city">Can Tho</field>
+        </record>
+
+        <!-- CANDIDATE 5: 50 POINTS (Cat +30, Role +20) -->
+        <record id="demo_task20_candidate_5_50" model="res.partner">
+            <field name="name">Pacific Cloud Component</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Software</field>
+            <field name="x_product_details">Cloud API infrastructure and networking modules.</field>
+            <field name="industry_id" ref="base.res_partner_industry_H"/>
+            <field name="country_id" ref="base.sg"/>
+            <field name="email">sales@pacificcloud.sg</field>
+            <field name="phone">+6561112233</field>
+            <field name="city">Singapore</field>
+        </record>
+
+        <!-- CANDIDATE 6: 45 POINTS (Ind +20, Event +20, Country +5) -->
+        <record id="demo_task20_candidate_6_45" model="res.partner">
+            <field name="name">An Nam Tech Solutions</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Automotive</field>
+            <field name="industry_id" ref="base.res_partner_industry_J"/>
+            <field name="x_fb_industry">IT/Communication</field>
+            <field name="x_event">Vietnam Expo 2026</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="email">hello@annamtech.vn</field>
+            <field name="phone">0906555666</field>
+            <field name="city">Hai Phong</field>
+        </record>
+
+        <!-- CANDIDATE 7: 40 POINTS (Ind +20, Event +20) -->
+        <record id="demo_task20_candidate_7_40" model="res.partner">
+            <field name="name">Da Nang Tech Hub</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Furniture</field>
+            <field name="industry_id" ref="base.res_partner_industry_J"/>
+            <field name="x_fb_industry">IT/Communication</field>
+            <field name="x_event">Saigon Tech Fair</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="email">office@danangtechhub.com</field>
+            <field name="phone">+14155551234</field>
+            <field name="city">San Francisco</field>
+        </record>
+
+        <!-- CANDIDATE 8: 30 POINTS (Cat +30) -->
+        <record id="demo_task20_candidate_8_30" model="res.partner">
+            <field name="name">Eastern Semiconductor Group</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Electronics</field>
+            <field name="industry_id" ref="base.res_partner_industry_A"/>
+            <field name="x_event">Tokyo Expo</field>
+            <field name="country_id" ref="base.jp"/>
+            <field name="email">sales@easternsemi.jp</field>
+            <field name="phone">+81312345678</field>
+            <field name="city">Osaka</field>
+        </record>
+
+        <!-- CANDIDATE 9: 25 POINTS (Role +20, Country +5) -->
+        <record id="demo_task20_candidate_9_25" model="res.partner">
+            <field name="name">Southern Distribution JSC</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Food &amp; Beverage</field>
+            <field name="industry_id" ref="base.res_partner_industry_I"/>
+            <field name="x_event">Food Expo</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="email">order@southerndist.vn</field>
+            <field name="phone">0907666777</field>
+            <field name="city">Vung Tau</field>
+        </record>
+
+        <!-- CANDIDATE 10: 20 POINTS (Event +20) -->
+        <record id="demo_task20_candidate_10_20" model="res.partner">
+            <field name="name">Hanoi Event Partner</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Textiles</field>
+            <field name="industry_id" ref="base.res_partner_industry_M"/>
+            <field name="x_event">Vietnam Expo 2026</field>
+            <field name="country_id" ref="base.kr"/>
+            <field name="email">info@hanoievent.kr</field>
+            <field name="phone">+8221234567</field>
+            <field name="city">Seoul</field>
+        </record>
+
+        <!-- CANDIDATE 11: 5 POINTS (Country +5) - Ranked #11 outside Top 10 -->
+        <record id="demo_task20_candidate_11_5" model="res.partner">
+            <field name="name">Saigon Local Store</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Construction</field>
+            <field name="industry_id" ref="base.res_partner_industry_F"/>
+            <field name="country_id" ref="base.vn"/>
+            <field name="email">contact@saigonlocal.vn</field>
+            <field name="phone">0908777888</field>
+            <field name="city">Ho Chi Minh City</field>
+        </record>
+
+        <!-- CANDIDATE 12: 0 POINTS (All Different) - Ranked #12 outside Top 10 -->
+        <record id="demo_task20_candidate_12_0" model="res.partner">
+            <field name="name">Foreign Irrelevant Corp</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Chemicals</field>
+            <field name="industry_id" ref="base.res_partner_industry_B"/>
+            <field name="country_id" ref="base.de"/>
+            <field name="email">contact@irrelevant.de</field>
+            <field name="phone">+4930123456</field>
+            <field name="city">Berlin</field>
+        </record>
+    </data>
+</odoo>

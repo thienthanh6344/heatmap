@@ -1,0 +1,1315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ================================================================= -->
+        <!-- DYNAMIC ATTRIBUTE DEFINITIONS                                      -->
+        <!-- ================================================================= -->
+        <record id="attr_capacity" model="sgt.project.attribute">
+            <field name="name">Capacity</field>
+            <field name="code">capacity</field>
+            <field name="field_type">number</field>
+            <field name="unit">MW</field>
+            <field name="sequence">10</field>
+            <field name="description">Power generation or production capacity</field>
+        </record>
+
+        <record id="attr_investment" model="sgt.project.attribute">
+            <field name="name">Investment</field>
+            <field name="code">investment</field>
+            <field name="field_type">number</field>
+            <field name="unit">USD</field>
+            <field name="sequence">20</field>
+            <field name="description">Total capital expenditure / budget in USD</field>
+        </record>
+
+        <record id="attr_technology" model="sgt.project.attribute">
+            <field name="name">Technology</field>
+            <field name="code">technology</field>
+            <field name="field_type">text</field>
+            <field name="sequence">30</field>
+            <field name="description">Underlying engineering or technological stack</field>
+        </record>
+
+        <record id="attr_expected_revenue" model="sgt.project.attribute">
+            <field name="name">Expected Revenue</field>
+            <field name="code">expected_revenue</field>
+            <field name="field_type">number</field>
+            <field name="unit">USD</field>
+            <field name="sequence">40</field>
+            <field name="description">Annual projected revenue in USD</field>
+        </record>
+
+        <record id="attr_factory_type" model="sgt.project.attribute">
+            <field name="name">Factory Type</field>
+            <field name="code">factory_type</field>
+            <field name="field_type">selection</field>
+            <field name="selection_options">Manufacturing,High-Tech,Assembly,Warehouse,Chemical</field>
+            <field name="sequence">50</field>
+            <field name="description">Plant classification</field>
+        </record>
+
+        <record id="attr_area" model="sgt.project.attribute">
+            <field name="name">Total Area</field>
+            <field name="code">area</field>
+            <field name="field_type">number</field>
+            <field name="unit">m²</field>
+            <field name="sequence">60</field>
+            <field name="description">Land plot or floor area</field>
+        </record>
+
+        <record id="attr_employees" model="sgt.project.attribute">
+            <field name="name">Employees</field>
+            <field name="code">employees</field>
+            <field name="field_type">number</field>
+            <field name="unit">People</field>
+            <field name="sequence">70</field>
+            <field name="description">Total workforce employed</field>
+        </record>
+
+        <record id="attr_contract_value" model="sgt.project.attribute">
+            <field name="name">Contract Value</field>
+            <field name="code">contract_value</field>
+            <field name="field_type">number</field>
+            <field name="unit">USD</field>
+            <field name="sequence">80</field>
+            <field name="description">EPC / Construction contract value</field>
+        </record>
+
+        <record id="attr_start_date" model="sgt.project.attribute">
+            <field name="name">Start Date</field>
+            <field name="code">start_date</field>
+            <field name="field_type">date</field>
+            <field name="sequence">90</field>
+            <field name="description">Construction ground-breaking date</field>
+        </record>
+
+        <record id="attr_end_date" model="sgt.project.attribute">
+            <field name="name">End Date / Target COD</field>
+            <field name="code">end_date</field>
+            <field name="field_type">date</field>
+            <field name="sequence">100</field>
+            <field name="description">Target Commercial Operation Date</field>
+        </record>
+
+        <!-- ================================================================= -->
+        <!-- DEMO PROJECTS: GEAREA, ARGO, YINGBO + REGIONAL NETWORK            -->
+        <!-- ================================================================= -->
+
+        <!-- 1. GEAREA (Bình Dương - Energy) -->
+        <record id="demo_prj_gearea" model="sgt.project.heatmap">
+            <field name="name">GEAREA Solar Power Plant</field>
+            <field name="code">PRJ-VN-GEAREA</field>
+            <field name="project_type">energy</field>
+            <field name="status">active</field>
+            <field name="industry">Energy</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Bình Dương</field>
+            <field name="district">Bến Cát</field>
+            <field name="address">KCN Mỹ Phước 3, Bến Cát, Bình Dương</field>
+            <field name="latitude">11.1568</field>
+            <field name="longitude">106.6342</field>
+            <field name="owner">Gearea Clean Power JSC</field>
+            <field name="weight">2.5</field>
+            <field name="description">&lt;p&gt;Flagship 500 MW utility-scale solar facility powering manufacturing zones in Binh Duong.&lt;/p&gt;</field>
+        </record>
+        <record id="val_gearea_capacity" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_gearea"/>
+            <field name="attribute_id" ref="attr_capacity"/>
+            <field name="value_number">500.0</field>
+        </record>
+        <record id="val_gearea_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_gearea"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">200000000.0</field>
+        </record>
+        <record id="val_gearea_technology" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_gearea"/>
+            <field name="attribute_id" ref="attr_technology"/>
+            <field name="value_text">Solar PV (Monocrystalline)</field>
+        </record>
+
+        <!-- GEAREA SUB-POINTS -->
+        <record id="point_gearea_1" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_gearea"/>
+            <field name="name">GEAREA Cụm pin Phân khu 1</field>
+            <field name="sequence">10</field>
+            <field name="latitude">11.1568</field>
+            <field name="longitude">106.6342</field>
+            <field name="weight">2.5</field>
+            <field name="point_type">facility</field>
+            <field name="address">Khu A, KCN Mỹ Phước 3, Bến Cát</field>
+        </record>
+        <record id="point_gearea_2" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_gearea"/>
+            <field name="name">GEAREA Cụm pin Phân khu 2</field>
+            <field name="sequence">20</field>
+            <field name="latitude">11.1620</field>
+            <field name="longitude">106.6410</field>
+            <field name="weight">2.2</field>
+            <field name="point_type">turbine</field>
+            <field name="address">Khu B, KCN Mỹ Phước 3, Bến Cát</field>
+        </record>
+        <record id="point_gearea_3" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_gearea"/>
+            <field name="name">GEAREA Trạm biến áp 220kV &amp; Inverter Hub</field>
+            <field name="sequence">30</field>
+            <field name="latitude">11.1535</field>
+            <field name="longitude">106.6300</field>
+            <field name="weight">1.8</field>
+            <field name="point_type">substation</field>
+        </record>
+        <record id="point_gearea_4" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_gearea"/>
+            <field name="name">GEAREA Hệ thống Pin Lưu trữ BESS</field>
+            <field name="sequence">40</field>
+            <field name="latitude">11.1580</field>
+            <field name="longitude">106.6365</field>
+            <field name="weight">1.5</field>
+            <field name="point_type">storage</field>
+        </record>
+
+        <!-- 2. ARGO (Quảng Ninh - Energy) -->
+        <record id="demo_prj_argo" model="sgt.project.heatmap">
+            <field name="name">ARGO Offshore Wind Farm</field>
+            <field name="code">PRJ-VN-ARGO</field>
+            <field name="project_type">energy</field>
+            <field name="status">planning</field>
+            <field name="industry">Energy</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Quảng Ninh</field>
+            <field name="district">Hạ Long</field>
+            <field name="address">Vịnh Bắc Bộ, Hạ Long, Quảng Ninh</field>
+            <field name="latitude">20.9505</field>
+            <field name="longitude">107.0734</field>
+            <field name="owner">ABC Corporation</field>
+            <field name="weight">2.0</field>
+            <field name="description">&lt;p&gt;Offshore wind project supplying clean electricity to Northern industrial clusters.&lt;/p&gt;</field>
+        </record>
+        <record id="val_argo_technology" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_argo"/>
+            <field name="attribute_id" ref="attr_technology"/>
+            <field name="value_text">Offshore Wind Turbines (15 MW Direct Drive)</field>
+        </record>
+        <record id="val_argo_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_argo"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">350000000.0</field>
+        </record>
+        <record id="val_argo_revenue" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_argo"/>
+            <field name="attribute_id" ref="attr_expected_revenue"/>
+            <field name="value_number">45000000.0</field>
+        </record>
+        <!-- ARGO SUB-POINTS -->
+        <record id="point_argo_1" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_argo"/>
+            <field name="name">ARGO Cụm tuabin gió ngoài khơi Khu vực Alpha</field>
+            <field name="sequence">10</field>
+            <field name="latitude">20.9505</field>
+            <field name="longitude">107.0734</field>
+            <field name="weight">3.0</field>
+            <field name="point_type">turbine</field>
+        </record>
+        <record id="point_argo_2" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_argo"/>
+            <field name="name">ARGO Cụm tuabin gió ngoài khơi Khu vực Beta</field>
+            <field name="sequence">20</field>
+            <field name="latitude">20.9620</field>
+            <field name="longitude">107.0890</field>
+            <field name="weight">2.8</field>
+            <field name="point_type">turbine</field>
+        </record>
+        <record id="point_argo_3" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_argo"/>
+            <field name="name">ARGO Trạm biến áp nâng áp ngoài khơi 500kV</field>
+            <field name="sequence">30</field>
+            <field name="latitude">20.9410</field>
+            <field name="longitude">107.0620</field>
+            <field name="weight">2.2</field>
+            <field name="point_type">substation</field>
+        </record>
+        <record id="point_argo_4" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_argo"/>
+            <field name="name">ARGO Trung tâm điều hành &amp; Cảng dịch vụ O&amp;M</field>
+            <field name="sequence">40</field>
+            <field name="latitude">20.9320</field>
+            <field name="longitude">107.0480</field>
+            <field name="weight">1.6</field>
+            <field name="point_type">office</field>
+        </record>
+
+        <!-- 3. YINGBO (Đồng Nai - Manufacturing) -->
+        <record id="demo_prj_yingbo" model="sgt.project.heatmap">
+            <field name="name">YINGBO Precision Electronics Complex</field>
+            <field name="code">PRJ-VN-YINGBO</field>
+            <field name="project_type">manufacturing</field>
+            <field name="status">active</field>
+            <field name="industry">Manufacturing</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Đồng Nai</field>
+            <field name="district">Long Thành</field>
+            <field name="address">KCN Long Thành, Đồng Nai</field>
+            <field name="latitude">10.7932</field>
+            <field name="longitude">106.9534</field>
+            <field name="owner">YingBo Global Tech Ltd</field>
+            <field name="weight">3.0</field>
+            <field name="description">&lt;p&gt;High-tech smart electronics and robotic components manufacturing plant.&lt;/p&gt;</field>
+        </record>
+        <record id="val_yingbo_factory_type" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_yingbo"/>
+            <field name="attribute_id" ref="attr_factory_type"/>
+            <field name="value_selection">Manufacturing</field>
+        </record>
+        <record id="val_yingbo_area" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_yingbo"/>
+            <field name="attribute_id" ref="attr_area"/>
+            <field name="value_number">120000.0</field>
+        </record>
+        <record id="val_yingbo_employees" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_yingbo"/>
+            <field name="attribute_id" ref="attr_employees"/>
+            <field name="value_number">2500.0</field>
+        </record>
+        <!-- YINGBO SUB-POINTS -->
+        <record id="point_yingbo_1" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_yingbo"/>
+            <field name="name">YINGBO Nhà máy Lắp ráp Thông minh Block A1</field>
+            <field name="sequence">10</field>
+            <field name="latitude">10.7932</field>
+            <field name="longitude">106.9534</field>
+            <field name="weight">2.8</field>
+            <field name="point_type">facility</field>
+        </record>
+        <record id="point_yingbo_2" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_yingbo"/>
+            <field name="name">YINGBO Nhà máy Robot Tự động hóa Block A2</field>
+            <field name="sequence">20</field>
+            <field name="latitude">10.7975</field>
+            <field name="longitude">106.9580</field>
+            <field name="weight">2.4</field>
+            <field name="point_type">facility</field>
+        </record>
+        <record id="point_yingbo_3" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_yingbo"/>
+            <field name="name">YINGBO Trung tâm Nghiên cứu &amp; Phát triển R&amp;D</field>
+            <field name="sequence">30</field>
+            <field name="latitude">10.7910</field>
+            <field name="longitude">106.9490</field>
+            <field name="weight">1.8</field>
+            <field name="point_type">office</field>
+        </record>
+        <record id="point_yingbo_4" model="sgt.project.heatmap.point">
+            <field name="project_id" ref="demo_prj_yingbo"/>
+            <field name="name">YINGBO Trung tâm Logistics &amp; Kho tự động</field>
+            <field name="sequence">40</field>
+            <field name="latitude">10.7880</field>
+            <field name="longitude">106.9460</field>
+            <field name="weight">1.6</field>
+            <field name="point_type">storage</field>
+        </record>
+        <record id="val_yingbo_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_yingbo"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">150000000.0</field>
+        </record>
+
+        <!-- ================================================================= -->
+        <!-- CONTACT ECOSYSTEM: GEAREA SOLAR POWER PLANT (10 CONTACTS)          -->
+        <!-- ================================================================= -->
+        <record id="demo_contact_gearea_1" model="res.partner">
+            <field name="name">Gearea Solar EPC Vietnam Ltd</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Solar PV, EPC Contracting, Inverters</field>
+            <field name="x_fb_industry">Energy</field>
+            <field name="x_product_details">EPC turnkey developer for utility-scale solar farms and grid-tied systems.</field>
+            <field name="contact_province">Bình Dương</field>
+            <field name="contact_district">Bến Cát</field>
+            <field name="street">KCN Mỹ Phước 3, Bến Cát</field>
+            <field name="city">Bến Cát</field>
+            <field name="partner_latitude">11.1568</field>
+            <field name="partner_longitude">106.6342</field>
+            <field name="email">contact@gearea-epc.vn</field>
+            <field name="phone">0274-3881122</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+        <record id="demo_contact_gearea_2" model="res.partner">
+            <field name="name">Saigon Inverter &amp; Power Tech JSC</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Inverters, Grid Substation</field>
+            <field name="x_fb_industry">Energy</field>
+            <field name="x_product_details">Manufacturer of high-efficiency 3-phase string inverters and central solar inverters.</field>
+            <field name="contact_province">TP. Hồ Chí Minh</field>
+            <field name="contact_district">Thủ Đức</field>
+            <field name="street">Khu Công nghệ cao, TP. Thủ Đức</field>
+            <field name="city">TP. Hồ Chí Minh</field>
+            <field name="partner_latitude">10.8495</field>
+            <field name="partner_longitude">106.7725</field>
+            <field name="email">sales@sg-inverter.vn</field>
+            <field name="phone">028-37719900</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+        <record id="demo_contact_gearea_3" model="res.partner">
+            <field name="name">Dong Nai Green Cable &amp; Wire Corp</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Solar Cable, Electrical Equipment</field>
+            <field name="x_fb_industry">Manufacturing</field>
+            <field name="x_product_details">Specialized UV-resistant DC solar cables and medium-voltage power distribution cables.</field>
+            <field name="contact_province">Đồng Nai</field>
+            <field name="contact_district">Biên Hòa</field>
+            <field name="street">KCN Biên Hòa 2, Đồng Nai</field>
+            <field name="city">Biên Hòa</field>
+            <field name="partner_latitude">10.9325</field>
+            <field name="partner_longitude">106.8520</field>
+            <field name="email">orders@dncable.com.vn</field>
+            <field name="phone">0251-3836100</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+        <record id="demo_contact_gearea_4" model="res.partner">
+            <field name="name">Binh Duong Mega Textile Mills</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Clean Energy Consumption, Solar PPA</field>
+            <field name="x_fb_industry">Textile</field>
+            <field name="x_product_details">Major industrial consumer seeking 30MW rooftop solar power purchase agreement (PPA).</field>
+            <field name="contact_province">Bình Dương</field>
+            <field name="contact_district">Thuận An</field>
+            <field name="street">KCN VSIP 1, Thuận An</field>
+            <field name="city">Thuận An</field>
+            <field name="partner_latitude">10.9250</field>
+            <field name="partner_longitude">106.7020</field>
+            <field name="email">procurement@bd-textile.vn</field>
+            <field name="phone">0274-3755400</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+        <record id="demo_contact_gearea_5" model="res.partner">
+            <field name="name">Tay Ninh Agro-Energy Farm Solutions</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">both</field>
+            <field name="x_product_category">Agri-PV Systems, Solar Irrigation</field>
+            <field name="x_fb_industry">Agriculture</field>
+            <field name="x_product_details">Dual-use agricultural land solar projects integrating greenhouse crops and smart solar arrays.</field>
+            <field name="contact_province">Tây Ninh</field>
+            <field name="contact_district">Trảng Bàng</field>
+            <field name="street">KCN Phước Đông, Trảng Bàng</field>
+            <field name="city">Trảng Bàng</field>
+            <field name="partner_latitude">11.0850</field>
+            <field name="partner_longitude">106.3120</field>
+            <field name="email">info@tayninh-agropv.vn</field>
+            <field name="phone">0276-3899200</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+        <record id="demo_contact_gearea_6" model="res.partner">
+            <field name="name">Vina Solar Mounting Structures JSC</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Aluminum Rails, Solar Trackers</field>
+            <field name="x_fb_industry">Manufacturing</field>
+            <field name="x_product_details">Precision single-axis solar trackers and anodized aluminum mounting frames for PV farms.</field>
+            <field name="contact_province">Bình Dương</field>
+            <field name="contact_district">Dĩ An</field>
+            <field name="street">KCN Sóng Thần 2, Dĩ An</field>
+            <field name="city">Dĩ An</field>
+            <field name="partner_latitude">10.8980</field>
+            <field name="partner_longitude">106.7550</field>
+            <field name="email">sales@vinamount.vn</field>
+            <field name="phone">0274-3791500</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+        <record id="demo_contact_gearea_7" model="res.partner">
+            <field name="name">Saigon Smart Grid Engineering</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">SCADA, Energy Storage BESS</field>
+            <field name="x_fb_industry">Technology</field>
+            <field name="x_product_details">Smart grid telemetry, SCADA power management software, and 100MWh battery energy storage solutions.</field>
+            <field name="contact_province">TP. Hồ Chí Minh</field>
+            <field name="contact_district">Quận 1</field>
+            <field name="street">Tòa nhà Bitexco, Quận 1</field>
+            <field name="city">TP. Hồ Chí Minh</field>
+            <field name="partner_latitude">10.7715</field>
+            <field name="partner_longitude">106.7042</field>
+            <field name="email">solutions@sg-smartgrid.vn</field>
+            <field name="phone">028-38228800</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+        <record id="demo_contact_gearea_8" model="res.partner">
+            <field name="name">Binh Phuoc Solar Substation Contracting</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Transformer Substation 110kV</field>
+            <field name="x_fb_industry">Energy</field>
+            <field name="x_product_details">Design and commissioning of 110kV/220kV booster substations for solar renewable plants.</field>
+            <field name="contact_province">Bình Phước</field>
+            <field name="contact_district">Chơn Thành</field>
+            <field name="street">KCN Becamex Chơn Thành</field>
+            <field name="city">Chơn Thành</field>
+            <field name="partner_latitude">11.4580</field>
+            <field name="partner_longitude">106.6850</field>
+            <field name="email">admin@binhphuoc-substation.vn</field>
+            <field name="phone">0271-3668822</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+        <record id="demo_contact_gearea_9" model="res.partner">
+            <field name="name">Tan Uyen Industrial Park Management</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Rooftop Solar Offtaker, Green Certificate</field>
+            <field name="x_fb_industry">Real Estate</field>
+            <field name="x_product_details">Industrial park authority purchasing renewable energy I-REC certificates and bulk solar power.</field>
+            <field name="contact_province">Bình Dương</field>
+            <field name="contact_district">Tân Uyên</field>
+            <field name="street">KCN Nam Tân Uyên</field>
+            <field name="city">Tân Uyên</field>
+            <field name="partner_latitude">11.0540</field>
+            <field name="partner_longitude">106.7680</field>
+            <field name="email">green@tanuyen-ip.vn</field>
+            <field name="phone">0274-3652100</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+        <record id="demo_contact_gearea_10" model="res.partner">
+            <field name="name">Southern Renewable Inspection &amp; Testing</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">both</field>
+            <field name="x_product_category">PV Quality Inspection, Drone Thermography</field>
+            <field name="x_fb_industry">Services</field>
+            <field name="x_product_details">Drone thermal scanning for hot-spot identification, EL testing, and solar plant commissioning audits.</field>
+            <field name="contact_province">TP. Hồ Chí Minh</field>
+            <field name="contact_district">Bình Thạnh</field>
+            <field name="street">Điện Biên Phủ, Bình Thạnh</field>
+            <field name="city">TP. Hồ Chí Minh</field>
+            <field name="partner_latitude">10.8010</field>
+            <field name="partner_longitude">106.7120</field>
+            <field name="email">lab@southern-inspect.vn</field>
+            <field name="phone">028-35123456</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_gearea'))]"/>
+        </record>
+
+        <!-- ================================================================= -->
+        <!-- CONTACT ECOSYSTEM: ARGO OFFSHORE WIND FARM (10 CONTACTS)          -->
+        <!-- ================================================================= -->
+        <record id="demo_contact_argo_1" model="res.partner">
+            <field name="name">Argo Maritime Engineering &amp; Construction</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Offshore Foundation, Jack-up Vessels</field>
+            <field name="x_fb_industry">Energy</field>
+            <field name="x_product_details">Specialized maritime construction vessels and turbine installation contractors.</field>
+            <field name="contact_province">Quảng Ninh</field>
+            <field name="contact_district">Hạ Long</field>
+            <field name="street">Cảng Cái Lân, TP. Hạ Long</field>
+            <field name="city">Hạ Long</field>
+            <field name="partner_latitude">20.9505</field>
+            <field name="partner_longitude">107.0734</field>
+            <field name="email">projects@argo-maritime.vn</field>
+            <field name="phone">0203-3846200</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+        <record id="demo_contact_argo_2" model="res.partner">
+            <field name="name">Haiphong Heavy Port &amp; Lifting Services</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Port Logistics, Turbine Staging</field>
+            <field name="x_fb_industry">Logistics</field>
+            <field name="x_product_details">Heavy-lift quayside cranes and staging yard for 15MW wind turbine blades and nacelles.</field>
+            <field name="contact_province">Hải Phòng</field>
+            <field name="contact_district">Hải An</field>
+            <field name="street">KCN Đình Vũ, Hải An</field>
+            <field name="city">Hải Phòng</field>
+            <field name="partner_latitude">20.8150</field>
+            <field name="partner_longitude">106.7620</field>
+            <field name="email">operations@haiphong-heavyport.vn</field>
+            <field name="phone">0225-3859100</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+        <record id="demo_contact_argo_3" model="res.partner">
+            <field name="name">Vietnam Marine Geological &amp; Geophysical Survey</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Seabed Bathymetry, Geotechnical Coring</field>
+            <field name="x_fb_industry">Services</field>
+            <field name="x_product_details">Marine seismic reflection surveys, side-scan sonar, and seabed coring for wind foundations.</field>
+            <field name="contact_province">Hà Nội</field>
+            <field name="contact_district">Cầu Giấy</field>
+            <field name="street">Dịch Vọng Hậu, Cầu Giấy</field>
+            <field name="city">Hà Nội</field>
+            <field name="partner_latitude">21.0320</field>
+            <field name="partner_longitude">105.7850</field>
+            <field name="email">survey@marine-geology.vn</field>
+            <field name="phone">024-37549800</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+        <record id="demo_contact_argo_4" model="res.partner">
+            <field name="name">Quang Ninh Submarine Cable Tech</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Subsea Cable 220kV, Trenching</field>
+            <field name="x_fb_industry">Manufacturing</field>
+            <field name="x_product_details">Armored 220kV XLPE inter-array subsea cables and hydroplow burial services.</field>
+            <field name="contact_province">Quảng Ninh</field>
+            <field name="contact_district">Cẩm Phả</field>
+            <field name="street">Khu Kinh tế ven biển Cẩm Phả</field>
+            <field name="city">Cẩm Phả</field>
+            <field name="partner_latitude">21.0180</field>
+            <field name="partner_longitude">107.3120</field>
+            <field name="email">sales@qn-subsea.vn</field>
+            <field name="phone">0203-3862400</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+        <record id="demo_contact_argo_5" model="res.partner">
+            <field name="name">Thai Binh Coastal Wind Engineering JSC</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Turbine Monopiles, Transition Pieces</field>
+            <field name="x_fb_industry">Manufacturing</field>
+            <field name="x_product_details">Heavy steel rolling and welding for 8-meter diameter offshore wind monopiles.</field>
+            <field name="contact_province">Thái Bình</field>
+            <field name="contact_district">Tiền Hải</field>
+            <field name="street">KCN Tiền Hải, Thái Bình</field>
+            <field name="city">Tiền Hải</field>
+            <field name="partner_latitude">20.4010</field>
+            <field name="partner_longitude">106.5620</field>
+            <field name="email">fabrication@thaibinh-wind.vn</field>
+            <field name="phone">0227-3823400</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+        <record id="demo_contact_argo_6" model="res.partner">
+            <field name="name">National Power Transmission Northern Corp</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Power Offtaker, 500kV Grid Interconnection</field>
+            <field name="x_fb_industry">Energy</field>
+            <field name="x_product_details">Grid operator connecting offshore wind generation to national 500kV transmission system.</field>
+            <field name="contact_province">Hà Nội</field>
+            <field name="contact_district">Hoàn Kiếm</field>
+            <field name="street">Trần Hưng Đạo, Hoàn Kiếm</field>
+            <field name="city">Hà Nội</field>
+            <field name="partner_latitude">21.0210</field>
+            <field name="partner_longitude">105.8510</field>
+            <field name="email">interconnection@npt-north.evn.vn</field>
+            <field name="phone">024-22204455</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+        <record id="demo_contact_argo_7" model="res.partner">
+            <field name="name">Uong Bi Offshore Turbine Maintenance Hub</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">both</field>
+            <field name="x_product_category">Turbine Blade Repair, O&amp;M Crew</field>
+            <field name="x_fb_industry">Services</field>
+            <field name="x_product_details">24/7 offshore technicians, rope access blade repairs, and predictive gearbox maintenance.</field>
+            <field name="contact_province">Quảng Ninh</field>
+            <field name="contact_district">Uông Bí</field>
+            <field name="street">Phường Phương Đông, Uông Bí</field>
+            <field name="city">Uông Bí</field>
+            <field name="partner_latitude">21.0360</field>
+            <field name="partner_longitude">106.7710</field>
+            <field name="email">dispatch@uongbi-turbine.vn</field>
+            <field name="phone">0203-3661200</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+        <record id="demo_contact_argo_8" model="res.partner">
+            <field name="name">Dinh Vu Corrosion Protection Coatings</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Marine Epoxy, Cathodic Protection</field>
+            <field name="x_fb_industry">Chemical</field>
+            <field name="x_product_details">High-durability anti-fouling coatings and sacrificial aluminum anodes for splash zones.</field>
+            <field name="contact_province">Hải Phòng</field>
+            <field name="contact_district">Hải An</field>
+            <field name="street">KCN Đình Vũ, Hải Phòng</field>
+            <field name="city">Hải Phòng</field>
+            <field name="partner_latitude">20.8280</field>
+            <field name="partner_longitude">106.7450</field>
+            <field name="email">tech@dinhvu-coatings.vn</field>
+            <field name="phone">0225-3766800</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+        <record id="demo_contact_argo_9" model="res.partner">
+            <field name="name">Hai Duong Offshore Structural Steel Fab</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Jacket Structures, Heavy Steel</field>
+            <field name="x_fb_industry">Manufacturing</field>
+            <field name="x_product_details">Fabrication of 4-legged jacket foundations and boat landing stages for offshore platforms.</field>
+            <field name="contact_province">Hải Dương</field>
+            <field name="contact_district">Cẩm Giàng</field>
+            <field name="street">KCN Tân Trường, Hải Dương</field>
+            <field name="city">Hải Dương</field>
+            <field name="partner_latitude">20.9380</field>
+            <field name="partner_longitude">106.3150</field>
+            <field name="email">steel@haiduong-fab.vn</field>
+            <field name="phone">0220-3571200</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+        <record id="demo_contact_argo_10" model="res.partner">
+            <field name="name">Cat Ba Marine Environmental Monitoring</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">both</field>
+            <field name="x_product_category">Marine EIA, Bio-Acoustic Monitoring</field>
+            <field name="x_fb_industry">Services</field>
+            <field name="x_product_details">Underwater acoustic hydrophone monitoring for marine mammal protection during pile driving.</field>
+            <field name="contact_province">Hải Phòng</field>
+            <field name="contact_district">Cát Hải</field>
+            <field name="street">Thị trấn Cát Bà, Cát Hải</field>
+            <field name="city">Hải Phòng</field>
+            <field name="partner_latitude">20.7250</field>
+            <field name="partner_longitude">107.0450</field>
+            <field name="email">eco@catba-marine.vn</field>
+            <field name="phone">0225-3887100</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_argo'))]"/>
+        </record>
+
+        <!-- ================================================================= -->
+        <!-- CONTACT ECOSYSTEM: YINGBO PRECISION ELECTRONICS (10 CONTACTS)     -->
+        <!-- ================================================================= -->
+        <record id="demo_contact_yingbo_1" model="res.partner">
+            <field name="name">YingBo Precision Automation Vietnam</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Semiconductor Assembly, Pick &amp; Place Robotics</field>
+            <field name="x_fb_industry">Manufacturing</field>
+            <field name="x_product_details">High-speed pick-and-place automated assembly machines for SMT and packaging.</field>
+            <field name="contact_province">Đồng Nai</field>
+            <field name="contact_district">Long Thành</field>
+            <field name="street">KCN Long Thành, Đồng Nai</field>
+            <field name="city">Long Thành</field>
+            <field name="partner_latitude">10.7932</field>
+            <field name="partner_longitude">106.9534</field>
+            <field name="email">contact@yingbo-precision.vn</field>
+            <field name="phone">0251-3514200</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+        <record id="demo_contact_yingbo_2" model="res.partner">
+            <field name="name">Saigon Microelectronics Packaging &amp; Testing</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">both</field>
+            <field name="x_product_category">IC Packaging, Wire Bonding, Cleanroom</field>
+            <field name="x_fb_industry">Technology</field>
+            <field name="x_product_details">Advanced flip-chip and BGA semiconductor packaging and burn-in testing facility.</field>
+            <field name="contact_province">TP. Hồ Chí Minh</field>
+            <field name="contact_district">Thủ Đức</field>
+            <field name="street">Khu Công nghệ cao, TP. Thủ Đức</field>
+            <field name="city">TP. Hồ Chí Minh</field>
+            <field name="partner_latitude">10.8540</field>
+            <field name="partner_longitude">106.7910</field>
+            <field name="email">sales@sg-microelectronics.vn</field>
+            <field name="phone">028-37368000</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+        <record id="demo_contact_yingbo_3" model="res.partner">
+            <field name="name">Dong Nai High-Purity Specialty Gases</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Electronic Gases, Nitrogen, Silane</field>
+            <field name="x_fb_industry">Chemical</field>
+            <field name="x_product_details">Ultra-high purity 99.9999% nitrogen, argon, and specialty doping gas distribution systems.</field>
+            <field name="contact_province">Đồng Nai</field>
+            <field name="contact_district">Biên Hòa</field>
+            <field name="street">KCN Amata, Biên Hòa</field>
+            <field name="city">Biên Hòa</field>
+            <field name="partner_latitude">10.9630</field>
+            <field name="partner_longitude">106.8720</field>
+            <field name="email">gases@dn-purity.com.vn</field>
+            <field name="phone">0251-3891400</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+        <record id="demo_contact_yingbo_4" model="res.partner">
+            <field name="name">Binh Duong Ultra-Precision Mold &amp; Die Tech</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Precision Tooling, CNC 5-Axis Milling</field>
+            <field name="x_fb_industry">Manufacturing</field>
+            <field name="x_product_details">Micron-tolerance stamping dies and injection molds for semiconductor lead-frames.</field>
+            <field name="contact_province">Bình Dương</field>
+            <field name="contact_district">Bến Cát</field>
+            <field name="street">KCN Mỹ Phước 2, Bến Cát</field>
+            <field name="city">Bến Cát</field>
+            <field name="partner_latitude">11.1420</field>
+            <field name="partner_longitude">106.6180</field>
+            <field name="email">orders@bd-mold.vn</field>
+            <field name="phone">0274-3568900</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+        <record id="demo_contact_yingbo_5" model="res.partner">
+            <field name="name">Vina SMT Surface Mount Equipment Corp</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">SMT Lines, Reflow Ovens, AOI Inspection</field>
+            <field name="x_fb_industry">Technology</field>
+            <field name="x_product_details">Turnkey automated optical inspection (AOI) and nitrogen reflow soldering production lines.</field>
+            <field name="contact_province">TP. Hồ Chí Minh</field>
+            <field name="contact_district">Tân Bình</field>
+            <field name="street">KCN Tân Bình, TP.HCM</field>
+            <field name="city">TP. Hồ Chí Minh</field>
+            <field name="partner_latitude">10.8010</field>
+            <field name="partner_longitude">106.6540</field>
+            <field name="email">smt@vinasmt.vn</field>
+            <field name="phone">028-38159200</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+        <record id="demo_contact_yingbo_6" model="res.partner">
+            <field name="name">Long An Robotics Integration Solutions</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">SCARA Robots, AGV Material Transport</field>
+            <field name="x_fb_industry">Manufacturing</field>
+            <field name="x_product_details">Automated guided vehicles (AGV) and cobots tailored for cleanroom electronics transport.</field>
+            <field name="contact_province">Long An</field>
+            <field name="contact_district">Đức Hòa</field>
+            <field name="street">KCN Tân Đức, Đức Hòa</field>
+            <field name="city">Đức Hòa</field>
+            <field name="partner_latitude">10.8920</field>
+            <field name="partner_longitude">106.4520</field>
+            <field name="email">info@longan-robotics.vn</field>
+            <field name="phone">0272-3769100</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+        <record id="demo_contact_yingbo_7" model="res.partner">
+            <field name="name">Bac Ninh Silicon Wafer Substrate Hub</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Silicon Wafers, Chemical Mechanical Polishing</field>
+            <field name="x_fb_industry">Technology</field>
+            <field name="x_product_details">300mm silicon prime wafers and chemical mechanical planarization (CMP) polishing slurries.</field>
+            <field name="contact_province">Bắc Ninh</field>
+            <field name="contact_district">Yên Phong</field>
+            <field name="street">KCN Yên Phong 1, Bắc Ninh</field>
+            <field name="city">Yên Phong</field>
+            <field name="partner_latitude">21.2050</field>
+            <field name="partner_longitude">105.9860</field>
+            <field name="email">sales@bacninh-wafer.vn</field>
+            <field name="phone">0222-3866100</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+        <record id="demo_contact_yingbo_8" model="res.partner">
+            <field name="name">Vina Cleanroom HVAC &amp; Filter Systems</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">seller</field>
+            <field name="x_product_category">Class 100 Cleanroom, HEPA Filtration</field>
+            <field name="x_fb_industry">Manufacturing</field>
+            <field name="x_product_details">Turnkey Class 100 / ISO 5 semiconductor cleanrooms with precision humidity and temperature HVAC.</field>
+            <field name="contact_province">Đồng Nai</field>
+            <field name="contact_district">Nhơn Trạch</field>
+            <field name="street">KCN Nhơn Trạch 3, Đồng Nai</field>
+            <field name="city">Nhơn Trạch</field>
+            <field name="partner_latitude">10.7280</field>
+            <field name="partner_longitude">106.9150</field>
+            <field name="email">hvac@cleanroom-vina.vn</field>
+            <field name="phone">0251-3561800</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+        <record id="demo_contact_yingbo_9" model="res.partner">
+            <field name="name">Saigon Semiconductor Research Institute</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">both</field>
+            <field name="x_product_category">Chip Design R&amp;D, EDA Simulation</field>
+            <field name="x_fb_industry">Technology</field>
+            <field name="x_product_details">Applied research center developing RISC-V micro-controller architectures and semiconductor talent training.</field>
+            <field name="contact_province">TP. Hồ Chí Minh</field>
+            <field name="contact_district">Quận 7</field>
+            <field name="street">Khu Đô thị Phú Mỹ Hưng, Quận 7</field>
+            <field name="city">TP. Hồ Chí Minh</field>
+            <field name="partner_latitude">10.7320</field>
+            <field name="partner_longitude">106.7150</field>
+            <field name="email">research@ssri.edu.vn</field>
+            <field name="phone">028-54138800</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+        <record id="demo_contact_yingbo_10" model="res.partner">
+            <field name="name">Dong Nai Automotive Electronics Assembly</field>
+            <field name="is_company">True</field>
+            <field name="x_type_contact">buyer</field>
+            <field name="x_product_category">Automotive ECU, Sensor Modules, Tier 1 Supplier</field>
+            <field name="x_fb_industry">Automotive</field>
+            <field name="x_product_details">Tier-1 tier automotive electronics assembly plant sourcing high-reliability power semiconductors.</field>
+            <field name="contact_province">Đồng Nai</field>
+            <field name="contact_district">Long Thành</field>
+            <field name="street">KCN Lộc An - Bình Sơn, Long Thành</field>
+            <field name="city">Long Thành</field>
+            <field name="partner_latitude">10.7820</field>
+            <field name="partner_longitude">106.9680</field>
+            <field name="email">supply@dna-electronics.vn</field>
+            <field name="phone">0251-3685200</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="project_ids" eval="[(4, ref('demo_prj_yingbo'))]"/>
+        </record>
+
+        <!-- 4. Saigon High-Tech Park Innovation Center (TP.HCM) -->
+        <record id="demo_prj_04_tphcm" model="sgt.project.heatmap">
+            <field name="name">Saigon High-Tech Innovation Center</field>
+            <field name="code">PRJ-VN-SHTP-04</field>
+            <field name="project_type">technology</field>
+            <field name="status">active</field>
+            <field name="industry">Technology</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">TP.HCM</field>
+            <field name="district">Thành phố Thủ Đức</field>
+            <field name="address">Khu Công Nghệ Cao (SHTP), TP. Thủ Đức, TP.HCM</field>
+            <field name="latitude">10.8544</field>
+            <field name="longitude">106.7852</field>
+            <field name="owner">Saigon R&amp;D Consortium</field>
+            <field name="weight">2.5</field>
+        </record>
+        <record id="val_04_area" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_04_tphcm"/>
+            <field name="attribute_id" ref="attr_area"/>
+            <field name="value_number">45000.0</field>
+        </record>
+        <record id="val_04_employees" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_04_tphcm"/>
+            <field name="attribute_id" ref="attr_employees"/>
+            <field name="value_number">1200.0</field>
+        </record>
+        <record id="val_04_technology" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_04_tphcm"/>
+            <field name="attribute_id" ref="attr_technology"/>
+            <field name="value_text">AI, IoT, Embedded Systems</field>
+        </record>
+
+        <!-- 5. Ninh Thuận Solar Power Plant (Ninh Thuận) -->
+        <record id="demo_prj_05_ninhthuan" model="sgt.project.heatmap">
+            <field name="name">Ninh Thuan Clean Solar Farm</field>
+            <field name="code">PRJ-VN-NT-05</field>
+            <field name="project_type">energy</field>
+            <field name="status">active</field>
+            <field name="industry">Energy</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Ninh Thuận</field>
+            <field name="district">Thuận Nam</field>
+            <field name="address">Huyện Thuận Nam, Tỉnh Ninh Thuận</field>
+            <field name="latitude">11.5645</field>
+            <field name="longitude">108.9922</field>
+            <field name="weight">2.0</field>
+        </record>
+        <record id="val_05_capacity" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_05_ninhthuan"/>
+            <field name="attribute_id" ref="attr_capacity"/>
+            <field name="value_number">250.0</field>
+        </record>
+        <record id="val_05_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_05_ninhthuan"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">95000000.0</field>
+        </record>
+
+        <!-- 6. Long An Logistics Hub (Long An) -->
+        <record id="demo_prj_06_longan" model="sgt.project.heatmap">
+            <field name="name">Long An Smart Logistics Hub</field>
+            <field name="code">PRJ-VN-LA-06</field>
+            <field name="project_type">logistics</field>
+            <field name="status">planning</field>
+            <field name="industry">Logistics</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Long An</field>
+            <field name="district">Bến Lức</field>
+            <field name="address">KCN Vĩnh Lộc 2, Bến Lức, Long An</field>
+            <field name="latitude">10.6433</field>
+            <field name="longitude">106.4891</field>
+            <field name="weight">1.5</field>
+        </record>
+        <record id="val_06_area" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_06_longan"/>
+            <field name="attribute_id" ref="attr_area"/>
+            <field name="value_number">80000.0</field>
+        </record>
+        <record id="val_06_contract" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_06_longan"/>
+            <field name="attribute_id" ref="attr_contract_value"/>
+            <field name="value_number">60000000.0</field>
+        </record>
+
+        <!-- 7. Hải Phòng Deepwater Port Terminal (Hải Phòng) -->
+        <record id="demo_prj_07_haiphong" model="sgt.project.heatmap">
+            <field name="name">Hai Phong Deepwater Port Expansion</field>
+            <field name="code">PRJ-VN-HP-07</field>
+            <field name="project_type">infrastructure</field>
+            <field name="status">active</field>
+            <field name="industry">Infrastructure</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Hải Phòng</field>
+            <field name="district">Hải An</field>
+            <field name="address">Khu Bến Đình Vũ, Hải An, Hải Phòng</field>
+            <field name="latitude">20.8449</field>
+            <field name="longitude">106.6881</field>
+            <field name="weight">2.5</field>
+        </record>
+        <record id="val_07_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_07_haiphong"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">180000000.0</field>
+        </record>
+        <record id="val_07_start_date" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_07_haiphong"/>
+            <field name="attribute_id" ref="attr_start_date"/>
+            <field name="value_date">2025-01-15</field>
+        </record>
+        <record id="val_07_end_date" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_07_haiphong"/>
+            <field name="attribute_id" ref="attr_end_date"/>
+            <field name="value_date">2027-12-31</field>
+        </record>
+
+        <!-- 8. Đà Nẵng Software Campus (Đà Nẵng) -->
+        <record id="demo_prj_08_danang" model="sgt.project.heatmap">
+            <field name="name">Da Nang IT Park &amp; Software Campus</field>
+            <field name="code">PRJ-VN-DN-08</field>
+            <field name="project_type">technology</field>
+            <field name="status">active</field>
+            <field name="industry">Technology</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Đà Nẵng</field>
+            <field name="district">Hòa Vang</field>
+            <field name="address">Khu Công Nghệ Thông Tin Tập Trung Đà Nẵng</field>
+            <field name="latitude">16.0544</field>
+            <field name="longitude">108.2022</field>
+            <field name="weight">1.8</field>
+        </record>
+        <record id="val_08_area" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_08_danang"/>
+            <field name="attribute_id" ref="attr_area"/>
+            <field name="value_number">35000.0</field>
+        </record>
+        <record id="val_08_employees" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_08_danang"/>
+            <field name="attribute_id" ref="attr_employees"/>
+            <field name="value_number">850.0</field>
+        </record>
+
+        <!-- 9. Bà Rịa LNG Terminal (Bà Rịa - Vũng Tàu) -->
+        <record id="demo_prj_09_baria" model="sgt.project.heatmap">
+            <field name="name">Ba Ria LNG Power &amp; Gas Hub</field>
+            <field name="code">PRJ-VN-BRVT-09</field>
+            <field name="project_type">energy</field>
+            <field name="status">planning</field>
+            <field name="industry">Energy</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Bà Rịa - Vũng Tàu</field>
+            <field name="district">Tân Thành</field>
+            <field name="address">KCN Phú Mỹ 3, TX Phú Mỹ, Bà Rịa - Vũng Tàu</field>
+            <field name="latitude">10.5367</field>
+            <field name="longitude">107.0733</field>
+            <field name="weight">3.0</field>
+        </record>
+        <record id="val_09_capacity" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_09_baria"/>
+            <field name="attribute_id" ref="attr_capacity"/>
+            <field name="value_number">1200.0</field>
+        </record>
+        <record id="val_09_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_09_baria"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">750000000.0</field>
+        </record>
+
+        <!-- 10. Khánh Hòa Eco-Resort & Marine Complex (Khánh Hòa) -->
+        <record id="demo_prj_10_khanhhoa" model="sgt.project.heatmap">
+            <field name="name">Khanh Hoa Marine Eco Complex</field>
+            <field name="code">PRJ-VN-KH-10</field>
+            <field name="project_type">real_estate</field>
+            <field name="status">completed</field>
+            <field name="industry">Real Estate</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Khánh Hòa</field>
+            <field name="district">Cam Lâm</field>
+            <field name="address">Bãi Dài, Huyện Cam Lâm, Tỉnh Khánh Hòa</field>
+            <field name="latitude">12.2388</field>
+            <field name="longitude">109.1967</field>
+            <field name="weight">1.5</field>
+        </record>
+        <record id="val_10_area" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_10_khanhhoa"/>
+            <field name="attribute_id" ref="attr_area"/>
+            <field name="value_number">500000.0</field>
+        </record>
+        <record id="val_10_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_10_khanhhoa"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">110000000.0</field>
+        </record>
+
+        <!-- 11. Binh Duong Green Industrial Park 4 (Bình Dương) -->
+        <record id="demo_prj_11_binhduong2" model="sgt.project.heatmap">
+            <field name="name">Binh Duong Green Industrial Park 4</field>
+            <field name="code">PRJ-VN-BD-11</field>
+            <field name="project_type">manufacturing</field>
+            <field name="status">active</field>
+            <field name="industry">Manufacturing</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Bình Dương</field>
+            <field name="district">Tân Uyên</field>
+            <field name="address">KCN VSIP 3, Tân Uyên, Bình Dương</field>
+            <field name="latitude">11.0825</field>
+            <field name="longitude">106.7561</field>
+            <field name="weight">2.0</field>
+        </record>
+        <record id="val_11_factory_type" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_11_binhduong2"/>
+            <field name="attribute_id" ref="attr_factory_type"/>
+            <field name="value_selection">High-Tech</field>
+        </record>
+        <record id="val_11_area" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_11_binhduong2"/>
+            <field name="attribute_id" ref="attr_area"/>
+            <field name="value_number">350000.0</field>
+        </record>
+
+        <!-- 12. Dong Nai Logistics Center (Đồng Nai) -->
+        <record id="demo_prj_12_dongnai2" model="sgt.project.heatmap">
+            <field name="name">Dong Nai Port Logistics Center</field>
+            <field name="code">PRJ-VN-DN-12</field>
+            <field name="project_type">logistics</field>
+            <field name="status">active</field>
+            <field name="industry">Logistics</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Đồng Nai</field>
+            <field name="district">Nhơn Trạch</field>
+            <field name="address">KCN Nhơn Trạch 6, Đồng Nai</field>
+            <field name="latitude">10.6989</field>
+            <field name="longitude">106.9122</field>
+            <field name="weight">1.8</field>
+        </record>
+        <record id="val_12_employees" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_12_dongnai2"/>
+            <field name="attribute_id" ref="attr_employees"/>
+            <field name="value_number">450.0</field>
+        </record>
+
+        <!-- 13. Quang Ninh Eco Industrial Complex (Quảng Ninh) -->
+        <record id="demo_prj_13_quangninh2" model="sgt.project.heatmap">
+            <field name="name">Quang Ninh Smart Assembly Complex</field>
+            <field name="code">PRJ-VN-QN-13</field>
+            <field name="project_type">manufacturing</field>
+            <field name="status">planning</field>
+            <field name="industry">Manufacturing</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Quảng Ninh</field>
+            <field name="district">Quảng Yên</field>
+            <field name="address">KCN Bắc Tiền Phong, Quảng Yên, Quảng Ninh</field>
+            <field name="latitude">20.9322</field>
+            <field name="longitude">106.8123</field>
+            <field name="weight">1.5</field>
+        </record>
+        <record id="val_13_factory_type" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_13_quangninh2"/>
+            <field name="attribute_id" ref="attr_factory_type"/>
+            <field name="value_selection">Assembly</field>
+        </record>
+        <record id="val_13_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_13_quangninh2"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">85000000.0</field>
+        </record>
+
+        <!-- 14. TP.HCM Green Data Center (TP.HCM) -->
+        <record id="demo_prj_14_tphcm2" model="sgt.project.heatmap">
+            <field name="name">TP.HCM Green Hyperscale Data Center</field>
+            <field name="code">PRJ-VN-HCM-14</field>
+            <field name="project_type">technology</field>
+            <field name="status">active</field>
+            <field name="industry">Technology</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">TP.HCM</field>
+            <field name="district">Quận 7</field>
+            <field name="address">Khu Chế Xuất Tân Thuận, Quận 7, TP.HCM</field>
+            <field name="latitude">10.7324</field>
+            <field name="longitude">106.7188</field>
+            <field name="weight">2.2</field>
+        </record>
+        <record id="val_14_technology" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_14_tphcm2"/>
+            <field name="attribute_id" ref="attr_technology"/>
+            <field name="value_text">Tier III Hyperscale Data Center</field>
+        </record>
+        <record id="val_14_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_14_tphcm2"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">70000000.0</field>
+        </record>
+
+        <!-- 15. Long An Agro Processing Facility (Long An) -->
+        <record id="demo_prj_15_longan2" model="sgt.project.heatmap">
+            <field name="name">Long An High-Tech Agro Processing Plant</field>
+            <field name="code">PRJ-VN-LA-15</field>
+            <field name="project_type">agriculture</field>
+            <field name="status">active</field>
+            <field name="industry">Agriculture</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Long An</field>
+            <field name="district">Cần Giuộc</field>
+            <field name="address">KCN Long Hậu, Cần Giuộc, Long An</field>
+            <field name="latitude">10.5982</field>
+            <field name="longitude">106.6674</field>
+            <field name="weight">1.4</field>
+        </record>
+        <record id="val_15_area" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_15_longan2"/>
+            <field name="attribute_id" ref="attr_area"/>
+            <field name="value_number">65000.0</field>
+        </record>
+        <record id="val_15_employees" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_15_longan2"/>
+            <field name="attribute_id" ref="attr_employees"/>
+            <field name="value_number">600.0</field>
+        </record>
+        <!-- 16. Da Nang High-Tech Park Innovation Center -->
+        <record id="demo_prj_16_danang" model="sgt.project.heatmap">
+            <field name="name">Da Nang High-Tech Park Innovation Center</field>
+            <field name="code">PRJ-VN-DNG-16</field>
+            <field name="project_type">technology</field>
+            <field name="status">active</field>
+            <field name="industry">Technology</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Đà Nẵng</field>
+            <field name="district">Hòa Vang</field>
+            <field name="address">Khu Công Nghệ Cao Đà Nẵng, Hòa Vang</field>
+            <field name="latitude">16.0544</field>
+            <field name="longitude">108.0818</field>
+            <field name="location_source">goong</field>
+            <field name="geocoding_status">success</field>
+            <field name="weight">2.0</field>
+        </record>
+        <record id="val_16_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_16_danang"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">120000000.0</field>
+        </record>
+
+        <!-- 17. Bac Ninh Smart Semiconductor Plant -->
+        <record id="demo_prj_17_bacninh" model="sgt.project.heatmap">
+            <field name="name">Bac Ninh Semiconductor Assembly Plant</field>
+            <field name="code">PRJ-VN-BN-17</field>
+            <field name="project_type">manufacturing</field>
+            <field name="status">active</field>
+            <field name="industry">Manufacturing</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Bắc Ninh</field>
+            <field name="district">Yên Phong</field>
+            <field name="address">KCN Yên Phong II-C, Yên Phong, Bắc Ninh</field>
+            <field name="latitude">21.2185</field>
+            <field name="longitude">105.9520</field>
+            <field name="location_source">goong</field>
+            <field name="geocoding_status">success</field>
+            <field name="weight">3.0</field>
+        </record>
+        <record id="val_17_investment" model="sgt.project.attribute.value">
+            <field name="project_id" ref="demo_prj_17_bacninh"/>
+            <field name="attribute_id" ref="attr_investment"/>
+            <field name="value_number">350000000.0</field>
+        </record>
+
+        <!-- 18. Hai Phong Lach Huyen Deepwater Logistics Port -->
+        <record id="demo_prj_18_haiphong" model="sgt.project.heatmap">
+            <field name="name">Hai Phong Lach Huyen Deepwater Logistics Port</field>
+            <field name="code">PRJ-VN-HP-18</field>
+            <field name="project_type">logistics</field>
+            <field name="status">planning</field>
+            <field name="industry">Logistics</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Hải Phòng</field>
+            <field name="district">Cát Hải</field>
+            <field name="address">Cảng Cửa ngõ Quốc tế Lạch Huyện, Cát Hải, Hải Phòng</field>
+            <field name="latitude">20.8449</field>
+            <field name="longitude">106.8881</field>
+            <field name="location_source">manual</field>
+            <field name="geocoding_status">success</field>
+            <field name="weight">2.5</field>
+        </record>
+
+        <!-- 19. Can Thơ Green Biofuel Hub -->
+        <record id="demo_prj_19_cantho" model="sgt.project.heatmap">
+            <field name="name">Can Tho Green Biofuel Hub</field>
+            <field name="code">PRJ-VN-CT-19</field>
+            <field name="project_type">energy</field>
+            <field name="status">active</field>
+            <field name="industry">Energy</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Cần Thơ</field>
+            <field name="district">Cái Răng</field>
+            <field name="address">KCN Hưng Phú 1, Cái Răng, Cần Thơ</field>
+            <field name="latitude">10.0125</field>
+            <field name="longitude">105.7891</field>
+            <field name="location_source">import</field>
+            <field name="geocoding_status">success</field>
+            <field name="weight">1.8</field>
+        </record>
+
+        <!-- 20. Ha Noi West Lake Smart Urban (Unmapped: Missing Coordinates) -->
+        <record id="demo_prj_20_unmapped_hanoi" model="sgt.project.heatmap">
+            <field name="name">Ha Noi West Lake Smart Urban Tower</field>
+            <field name="code">PRJ-VN-HN-20</field>
+            <field name="project_type">real_estate</field>
+            <field name="status">planning</field>
+            <field name="industry">Real Estate</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Hà Nội</field>
+            <field name="district">Tây Hồ</field>
+            <field name="address">Khu Đô Thị Mới Tây Hồ Tây, Hà Nội</field>
+            <field name="location_source">manual</field>
+            <field name="geocoding_status">not_geocoded</field>
+            <field name="weight">1.0</field>
+        </record>
+
+        <!-- 21. Nghe An Offshore Wind Study (Unmapped: Missing Address & Coords) -->
+        <record id="demo_prj_21_unmapped_noaddress" model="sgt.project.heatmap">
+            <field name="name">Nghe An Offshore Wind Feasibility Study</field>
+            <field name="code">PRJ-VN-NA-21</field>
+            <field name="project_type">energy</field>
+            <field name="status">draft</field>
+            <field name="industry">Energy</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Nghệ An</field>
+            <field name="location_source">manual</field>
+            <field name="geocoding_status">failed</field>
+            <field name="weight">1.0</field>
+        </record>
+
+        <!-- 22. Binh Dinh Quy Nhon AI Campus -->
+        <record id="demo_prj_22_binhdinh" model="sgt.project.heatmap">
+            <field name="name">Quy Nhon AI Software Research Campus</field>
+            <field name="code">PRJ-VN-BD-22</field>
+            <field name="project_type">technology</field>
+            <field name="status">active</field>
+            <field name="industry">Technology</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="province">Bình Định</field>
+            <field name="district">Quy Nhơn</field>
+            <field name="address">Thung lũng Quy Hòa, TP. Quy Nhơn, Bình Định</field>
+            <field name="latitude">13.7224</field>
+            <field name="longitude">109.2194</field>
+            <field name="location_source">goong</field>
+            <field name="geocoding_status">success</field>
+            <field name="weight">1.6</field>
+        </record>
+    </data>
+</odoo>

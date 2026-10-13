@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- LIST VIEW -->
+    <record id="view_sgt_contact_match_list" model="ir.ui.view">
+        <field name="name">sgt.contact.match.list</field>
+        <field name="model">sgt.contact.match</field>
+        <field name="arch" type="xml">
+            <list string="Contact Match History" decoration-success="match_level == 'very_high'" decoration-info="match_level == 'high'" decoration-warning="match_level == 'medium'" decoration-danger="match_level in ['low', 'very_low']">
+                <field name="name"/>
+                <field name="contact_a_id"/>
+                <field name="contact_b_id"/>
+                <field name="score" string="Score (%)" widget="percentage" options="{'multiplier': 1}"/>
+                <field name="match_level" widget="badge"
+                       decoration-success="match_level == 'very_high'"
+                       decoration-info="match_level == 'high'"
+                       decoration-warning="match_level == 'medium'"
+                       decoration-danger="match_level in ['low', 'very_low']"/>
+                <field name="matched_by" optional="show"/>
+                <field name="matched_at" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="view_sgt_contact_match_form" model="ir.ui.view">
+        <field name="name">sgt.contact.match.form</field>
+        <field name="model">sgt.contact.match</field>
+        <field name="arch" type="xml">
+            <form string="Contact Match Record">
+                <header>
+                    <button name="action_recalculate" string="Recalculate Match" type="object" class="btn-primary" icon="fa-refresh"/>
+                    <button name="action_open_contact_a" string="Open Contact A" type="object" class="btn-secondary" icon="fa-user"/>
+                    <button name="action_open_contact_b" string="Open Contact B" type="object" class="btn-secondary" icon="fa-user"/>
+                    <field name="match_level" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <span class="o_form_label text-muted">Match Reference</span>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Evaluated Contacts">
+                            <field name="contact_a_id" readonly="1"/>
+                            <field name="contact_b_id" readonly="1"/>
+                            <field name="pair_key" readonly="1" groups="base.group_no_one"/>
+                        </group>
+                        <group string="Evaluation Metadata">
+                            <field name="score" readonly="1"/>
+                            <field name="matched_by" readonly="1"/>
+                            <field name="matched_at" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <!-- RICH DASHBOARD VISUALIZATION -->
+                    <div class="mt-3">
+                        <field name="dashboard_html" readonly="1" nolabel="1"/>
+                    </div>
+
+                    <!-- NOTEBOOK FOR TECHNICAL AUDIT -->
+                    <notebook class="mt-4">
+                        <page string="Scoring Breakdown" name="page_breakdown">
+                            <group>
+                                <group string="Core Identity">
+                                    <field name="name_score" readonly="1"/>
+                                    <field name="email_score" readonly="1"/>
+                                    <field name="phone_score" readonly="1"/>
+                                </group>
+                                <group string="Organization &amp; Context">
+                                    <field name="company_score" readonly="1"/>
+                                    <field name="position_score" readonly="1"/>
+                                    <field name="industry_score" readonly="1"/>
+                                    <field name="location_score" readonly="1"/>
+                                    <field name="tag_score" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Reasons &amp; Notes" name="page_notes">
+                            <group>
+                                <field name="reasons_text" readonly="1" string="Match Reasons Log"/>
+                                <field name="notes" placeholder="Add manual analysis or audit notes here..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- SEARCH VIEW -->
+    <record id="view_sgt_contact_match_search" model="ir.ui.view">
+        <field name="name">sgt.contact.match.search</field>
+        <field name="model">sgt.contact.match</field>
+        <field name="arch" type="xml">
+            <search string="Search Matches">
+                <field name="name"/>
+                <field name="contact_a_id"/>
+                <field name="contact_b_id"/>
+                <field name="pair_key"/>
+                <filter string="Very High Match (80-100%)" name="filter_very_high" domain="[('match_level', '=', 'very_high')]"/>
+                <filter string="High Match (60-79%)" name="filter_high" domain="[('match_level', '=', 'high')]"/>
+                <filter string="Medium Match (40-59%)" name="filter_medium" domain="[('match_level', '=', 'medium')]"/>
+                <filter string="Low Match (20-39%)" name="filter_low" domain="[('match_level', '=', 'low')]"/>
+                <filter string="Very Low Match (0-19%)" name="filter_very_low" domain="[('match_level', '=', 'very_low')]"/>
+                <separator/>
+                <filter string="Matched by Me" name="filter_my_matches" domain="[('matched_by', '=', uid)]"/>
+                <group>
+                    <filter string="Match Level" name="group_by_level" context="{'group_by': 'match_level'}"/>
+                    <filter string="Contact A" name="group_by_contact_a" context="{'group_by': 'contact_a_id'}"/>
+                    <filter string="Contact B" name="group_by_contact_b" context="{'group_by': 'contact_b_id'}"/>
+                    <filter string="Evaluator" name="group_by_matched_by" context="{'group_by': 'matched_by'}"/>
+                    <filter string="Evaluation Date" name="group_by_date" context="{'group_by': 'matched_at:day'}"/>
+                </group>
+                <searchpanel>
+                    <field name="match_level" string="Match Level" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <!-- GRAPH VIEW -->
+    <record id="view_sgt_contact_match_graph" model="ir.ui.view">
+        <field name="name">sgt.contact.match.graph</field>
+        <field name="model">sgt.contact.match</field>
+        <field name="arch" type="xml">
+            <graph string="Match Score Distribution" type="bar">
+                <field name="match_level"/>
+                <field name="score" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- PIVOT VIEW -->
+    <record id="view_sgt_contact_match_pivot" model="ir.ui.view">
+        <field name="name">sgt.contact.match.pivot</field>
+        <field name="model">sgt.contact.match</field>
+        <field name="arch" type="xml">
+            <pivot string="Match Making Analysis">
+                <field name="match_level" type="row"/>
+                <field name="score" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- ACTION: MATCH HISTORY -->
+    <record id="action_sgt_contact_match_history" model="ir.actions.act_window">
+        <field name="name">Match History</field>
+        <field name="res_model">sgt.contact.match</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+        <field name="search_view_id" ref="view_sgt_contact_match_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No contact matches evaluated yet!
+            </p>
+            <p>
+                Use the <strong>Compare Contacts</strong> tool to evaluate similarity between any two contacts in your CRM.
+            </p>
+        </field>
+    </record>
+
+    <!-- ACTION: MATCH ANALYTICS DASHBOARD -->
+    <record id="action_sgt_contact_match_analytics" model="ir.actions.act_window">
+        <field name="name">Match Analytics</field>
+        <field name="res_model">sgt.contact.match</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="search_view_id" ref="view_sgt_contact_match_search"/>
+    </record>
+</odoo>

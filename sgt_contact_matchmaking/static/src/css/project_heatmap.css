@@ -1,0 +1,708 @@
+/* SGT Vietnam Project Heatmap & Geo Analytics Stylesheet */
+
+.sgt-geo-dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: calc(100vh - 48px);
+    background-color: #f8fafc;
+    color: #1e293b;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 12px 18px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* TOP HEADER */
+.sgt-dash-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: #ffffff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.sgt-header-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.sgt-header-badge {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sgt-header-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.sgt-header-subtitle {
+    font-size: 13px;
+    color: #475569;
+    border-left: 2px solid #cbd5e1;
+    padding-left: 10px;
+}
+
+.sgt-header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+/* MAIN TWO-COLUMN BODY */
+.sgt-dash-body {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
+    height: calc(100vh - 120px);
+}
+
+@media (max-width: 992px) {
+    .sgt-dash-body {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow-y: auto;
+    }
+}
+
+/* LEFT SIDEBAR - SLEEK CRM THEMED PANEL WITH PERMANENT SCROLLBAR */
+.sgt-left-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: scroll !important; /* Luôn hiển thị thanh cuộn dọc */
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #64748b #f8fafc; /* Firefox: thumb & track */
+}
+
+.sgt-left-sidebar::-webkit-scrollbar {
+    width: 8px !important;
+}
+.sgt-left-sidebar::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 4px;
+}
+.sgt-left-sidebar::-webkit-scrollbar-thumb {
+    background: #64748b; /* Slate thumb matching screenshot */
+    border-radius: 4px;
+}
+.sgt-left-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+.sgt-left-sidebar::-webkit-scrollbar-thumb:active {
+    background: #334155;
+}
+
+/* PANEL CARDS */
+.sgt-panel-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+}
+
+.sgt-panel-header {
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #334155;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sgt-panel-content {
+    padding: 12px;
+}
+
+/* FORM CONTROLS IN SIDEBAR */
+.sgt-form-group {
+    margin-bottom: 8px;
+}
+
+.sgt-form-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 3px;
+}
+
+.sgt-slider-wrap {
+    margin-bottom: 10px;
+}
+
+/* STATS GRID */
+.sgt-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.sgt-stat-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.sgt-stat-num {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.sgt-stat-lbl {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* PROVINCE STATISTICS TABLE */
+.sgt-table-scroll {
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.sgt-province-table {
+    font-size: 12px;
+}
+
+.sgt-province-table th {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    padding: 6px 10px;
+}
+
+.sgt-province-table td {
+    padding: 6px 10px;
+    vertical-align: middle;
+}
+
+.sgt-clickable-row {
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.sgt-clickable-row:hover {
+    background-color: #f1f5f9 !important;
+}
+
+/* RIGHT MAP AREA */
+.sgt-right-map-area {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+/* FLOATING GOONG SEARCH BAR OVER MAP */
+.sgt-map-search-bar {
+    position: absolute;
+    top: 12px;
+    left: 60px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sgt-goong-search-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    width: 380px;
+    overflow: hidden;
+}
+
+.sgt-search-icon {
+    margin-left: 10px;
+    margin-right: 6px;
+    font-size: 14px;
+}
+
+.sgt-goong-search-input {
+    border: none;
+    outline: none;
+    padding: 8px 6px;
+    font-size: 12px;
+    flex: 1;
+    color: #1e293b;
+}
+
+.sgt-goong-dropdown {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    width: 380px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 1001;
+}
+
+.sgt-goong-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+
+.sgt-goong-item:hover {
+    background-color: #eff6ff;
+}
+
+.sgt-sug-main {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.sgt-sug-sub {
+    font-size: 11px;
+}
+
+.sgt-map-canvas-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex: 1;
+}
+
+#sgt_vietnam_leaflet_map {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    z-index: 1;
+}
+
+/* MAP LEGEND OVERLAY */
+.sgt-map-legend-overlay {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(4px);
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 12px;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    min-width: 150px;
+}
+
+.sgt-legend-pin {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* CUSTOM PIN MARKER */
+.sgt-custom-marker {
+    background: transparent;
+    border: none;
+}
+
+/* TOP CONTACT AREAS TABLE (SECTION 5) */
+.sgt-top-areas-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    margin-bottom: 12px;
+}
+
+.sgt-sortable-th {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.1s ease;
+    white-space: nowrap;
+}
+
+.sgt-sortable-th:hover {
+    background-color: #e2e8f0 !important;
+}
+
+.sgt-top-areas-table th {
+    font-size: 11px;
+    font-weight: 600;
+    color: #475569;
+    padding: 6px 8px;
+}
+
+.sgt-top-areas-table td {
+    padding: 6px 8px;
+}
+
+/* TABLE SCROLL CONTAINER - CLEAR VISIBLE SCROLLBAR */
+.sgt-table-scroll {
+    overflow-y: scroll !important;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #6366f1 #f1f5f9;
+}
+
+.sgt-table-scroll::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+}
+.sgt-table-scroll::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+.sgt-table-scroll::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 4px;
+}
+.sgt-table-scroll::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
+}
+
+/* STICKY QUICK NAVIGATION BAR */
+.sgt-quick-nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    margin-bottom: 2px;
+}
+
+.sgt-quick-nav-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.sgt-nav-pill {
+    font-size: 11px !important;
+    padding: 3px 8px !important;
+    border-radius: 14px !important;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    line-height: 1.2;
+}
+
+.sgt-nav-pill:hover {
+    background: #e2e8f0;
+    border-color: #94a3b8;
+    color: #0f172a;
+    transform: translateY(-1px);
+}
+
+.sgt-nav-pill-danger {
+    background: #fef2f2 !important;
+    border: 1.5px solid #ef4444 !important;
+    color: #b91c1c !important;
+    font-weight: 700 !important;
+}
+
+.sgt-nav-pill-danger:hover {
+    background: #fee2e2 !important;
+    border-color: #dc2626 !important;
+    color: #991b1b !important;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+}
+
+/* COLLAPSIBLE SECTION HEADERS */
+.sgt-collapsible-header {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.15s ease;
+}
+
+.sgt-collapsible-header:hover {
+    background-color: #f1f5f9 !important;
+}
+
+/* JUMP TO SECTION HIGHLIGHT PULSE ANIMATION */
+@keyframes sgtHighlightPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.85);
+        border-color: #6366f1;
+    }
+    40% {
+        box-shadow: 0 0 0 10px rgba(99, 102, 241, 0.25);
+        border-color: #4f46e5;
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+    }
+}
+
+.sgt-highlight-pulse {
+    animation: sgtHighlightPulse 1.8s ease-in-out;
+}
+
+/* ========================================================================= */
+/* PURPLE CRM CUSTOMER MAP THEME (EXACT MATCH TO DESIGN SCREENSHOT)          */
+/* ========================================================================= */
+
+/* SIDEBAR HEADER */
+.sgt-crm-header {
+    margin-bottom: 2px;
+}
+.sgt-crm-title {
+    color: #4a154b;
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 2px 0;
+    letter-spacing: -0.2px;
+}
+.sgt-crm-subtitle {
+    font-size: 11px;
+    color: #64748b;
+    line-height: 1.4;
+}
+.sgt-crm-subtitle strong {
+    color: #1e293b;
+    font-weight: 700;
+}
+
+/* SECTION TITLES */
+.sgt-crm-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 8px;
+}
+
+.sgt-crm-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+    margin-bottom: 4px;
+}
+
+/* FILTER BUTTONS IN KHÁCH HÀNG THEO ĐƠN */
+.sgt-crm-btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.sgt-crm-btn {
+    width: 100%;
+    text-align: left;
+    padding: 7px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    color: #1f2937;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.sgt-crm-btn:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+}
+.sgt-crm-btn-active {
+    background: #4a154b !important;
+    border-color: #4a154b !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+/* SUBROW FOR ACTIVE MONTHS DROPDOWN */
+.sgt-crm-subrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 2px 2px 2px;
+}
+.sgt-crm-subrow-label {
+    font-size: 12px;
+    color: #4b5563;
+    font-weight: 500;
+}
+.sgt-crm-select {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background-color: #ffffff;
+    color: #1f2937;
+    cursor: pointer;
+}
+
+/* CHECKBOXES */
+.sgt-crm-check-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #1f2937;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+}
+.sgt-crm-checkbox {
+    width: 15px;
+    height: 15px;
+    accent-color: #4a154b;
+    cursor: pointer;
+    border-radius: 3px;
+    margin: 0;
+}
+
+/* RANGE SLIDERS (BLUE) */
+.sgt-crm-range {
+    width: 100%;
+    accent-color: #2563eb;
+    height: 4px;
+    cursor: pointer;
+}
+
+/* METRIC CARDS GRID (KẾT QUẢ LỌC) */
+.sgt-crm-metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.sgt-crm-metric-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+.sgt-crm-metric-val {
+    font-size: 19px;
+    font-weight: 800;
+    color: #4a154b;
+    line-height: 1.2;
+}
+.sgt-crm-metric-lbl {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* QUALITY BREAKDOWN BADGES */
+.sgt-crm-quality-wrap {
+    font-size: 11px;
+    color: #475569;
+    line-height: 1.6;
+}
+.sgt-crm-dot-purple {
+    color: #4a154b;
+    font-size: 10px;
+}
+.sgt-crm-dot-lightpurple {
+    color: #7c3aed;
+    font-size: 10px;
+}
+.sgt-crm-dot-ring {
+    color: #64748b;
+    font-size: 10px;
+}
+
+/* TABLE STYLING (KHU VỰC BẤM ĐỂ KHOANH) */
+.sgt-crm-table-wrap {
+    overflow-y: auto;
+    max-height: 290px;
+    border-top: 1px solid #f1f5f9;
+}
+.sgt-crm-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+.sgt-crm-table th {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    padding: 6px 4px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+.sgt-crm-table td {
+    padding: 6px 4px;
+    color: #1e293b;
+    border-bottom: 1px solid #f8fafc;
+}
+.sgt-crm-table tr.sgt-clickable-row {
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+.sgt-crm-table tr.sgt-clickable-row:hover {
+    background-color: #f5f3ff !important;
+}
+.sgt-crm-table tr.table-active {
+    background-color: #ede9fe !important;
+    font-weight: 600;
+}
+
+

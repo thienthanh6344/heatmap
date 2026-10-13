@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- DEMO TAGS -->
+        <record id="demo_tag_vip" model="res.partner.category">
+            <field name="name">VIP Customer</field>
+            <field name="color">1</field>
+        </record>
+        <record id="demo_tag_b2b" model="res.partner.category">
+            <field name="name">B2B Enterprise</field>
+            <field name="color">2</field>
+        </record>
+        <record id="demo_tag_tech" model="res.partner.category">
+            <field name="name">Tech Lead</field>
+            <field name="color">3</field>
+        </record>
+
+        <!-- DEMO COMPANIES -->
+        <record id="demo_company_abc" model="res.partner">
+            <field name="name">ABC Trading Co., Ltd</field>
+            <field name="is_company">True</field>
+            <field name="city">Ho Chi Minh City</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+        <record id="demo_company_tech" model="res.partner">
+            <field name="name">Saigon Tech Innovation JSC</field>
+            <field name="is_company">True</field>
+            <field name="city">Hanoi</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+        <record id="demo_company_xyz" model="res.partner">
+            <field name="name">XYZ Global Logistics Corp</field>
+            <field name="is_company">True</field>
+            <field name="city">Da Nang</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+        <record id="demo_company_delta" model="res.partner">
+            <field name="name">Delta Construction Group</field>
+            <field name="is_company">True</field>
+            <field name="city">Hai Phong</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+
+        <!-- ================================================================= -->
+        <!-- 3 PAIRS: VERY HIGH MATCH (80% - 100%)                             -->
+        <!-- ================================================================= -->
+        <!-- PAIR 1 -->
+        <record id="demo_partner_high_1a" model="res.partner">
+            <field name="name">Nguyễn Văn An</field>
+            <field name="parent_id" ref="demo_company_abc"/>
+            <field name="function">Sales Manager</field>
+            <field name="email">an.nguyen@abctrading.vn</field>
+            <field name="phone">0901234567</field>
+            <field name="city">Ho Chi Minh City</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_vip'), ref('demo_tag_b2b')])]"/>
+        </record>
+        <record id="demo_partner_high_1b" model="res.partner">
+            <field name="name">Nguyen Van An</field>
+            <field name="parent_id" ref="demo_company_abc"/>
+            <field name="function">Sales Manager</field>
+            <field name="email">an.nguyen@abctrading.vn</field>
+            <field name="phone">0901234567</field>
+            <field name="city">Ho Chi Minh City</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_vip'), ref('demo_tag_b2b')])]"/>
+        </record>
+
+        <!-- PAIR 2 -->
+        <record id="demo_partner_high_2a" model="res.partner">
+            <field name="name">Trần Thị Mai</field>
+            <field name="parent_id" ref="demo_company_tech"/>
+            <field name="function">VP of Engineering</field>
+            <field name="email">mai.tran@saigontech.vn</field>
+            <field name="phone">0918889999</field>
+            <field name="city">Hanoi</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_tech')])]"/>
+        </record>
+        <record id="demo_partner_high_2b" model="res.partner">
+            <field name="name">Tran Thi Mai</field>
+            <field name="parent_id" ref="demo_company_tech"/>
+            <field name="function">VP of Engineering</field>
+            <field name="email">mai.tran@saigontech.vn</field>
+            <field name="phone">0918889999</field>
+            <field name="city">Hanoi</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_tech')])]"/>
+        </record>
+
+        <!-- PAIR 3 -->
+        <record id="demo_partner_high_3a" model="res.partner">
+            <field name="name">Lê Quốc Bảo</field>
+            <field name="parent_id" ref="demo_company_xyz"/>
+            <field name="function">Logistics Director</field>
+            <field name="email">bao.le@xyzlogistics.com</field>
+            <field name="phone">0933777888</field>
+            <field name="city">Da Nang</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_b2b')])]"/>
+        </record>
+        <record id="demo_partner_high_3b" model="res.partner">
+            <field name="name">Le Quoc Bao</field>
+            <field name="parent_id" ref="demo_company_xyz"/>
+            <field name="function">Logistics Director</field>
+            <field name="email">bao.le@xyzlogistics.com</field>
+            <field name="phone">0933777888</field>
+            <field name="city">Da Nang</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_b2b')])]"/>
+        </record>
+
+        <!-- ================================================================= -->
+        <!-- 3 PAIRS: MEDIUM MATCH (40% - 59%)                                 -->
+        <!-- ================================================================= -->
+        <!-- PAIR 4 -->
+        <record id="demo_partner_med_4a" model="res.partner">
+            <field name="name">Phạm Tuấn Khải</field>
+            <field name="parent_id" ref="demo_company_abc"/>
+            <field name="function">Senior Sales Lead</field>
+            <field name="email">khai.pham@abctrading.vn</field>
+            <field name="phone">0908111222</field>
+            <field name="city">Ho Chi Minh City</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_b2b')])]"/>
+        </record>
+        <record id="demo_partner_med_4b" model="res.partner">
+            <field name="name">Đỗ Hoàng Long</field>
+            <field name="parent_id" ref="demo_company_abc"/>
+            <field name="function">Sales Executive</field>
+            <field name="email">long.do@abctrading.vn</field>
+            <field name="phone">0908333444</field>
+            <field name="city">Ho Chi Minh City</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_b2b')])]"/>
+        </record>
+
+        <!-- PAIR 5 -->
+        <record id="demo_partner_med_5a" model="res.partner">
+            <field name="name">Vũ Đình Trọng</field>
+            <field name="parent_id" ref="demo_company_tech"/>
+            <field name="function">Software Engineer</field>
+            <field name="email">trong.vu@saigontech.vn</field>
+            <field name="phone">0977222333</field>
+            <field name="city">Hanoi</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_tech')])]"/>
+        </record>
+        <record id="demo_partner_med_5b" model="res.partner">
+            <field name="name">Ngô Gia Huy</field>
+            <field name="parent_id" ref="demo_company_tech"/>
+            <field name="function">Senior Software Engineer</field>
+            <field name="email">huy.ngo@saigontech.vn</field>
+            <field name="phone">0977555666</field>
+            <field name="city">Hanoi</field>
+            <field name="country_id" ref="base.vn"/>
+            <field name="category_id" eval="[(6, 0, [ref('demo_tag_tech')])]"/>
+        </record>
+
+        <!-- PAIR 6 -->
+        <record id="demo_partner_med_6a" model="res.partner">
+            <field name="name">Hoàng Minh Tâm</field>
+            <field name="parent_id" ref="demo_company_xyz"/>
+            <field name="function">Operations Coordinator</field>
+            <field name="email">tam.hoang@xyzlogistics.com</field>
+            <field name="phone">0944111333</field>
+            <field name="city">Da Nang</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+        <record id="demo_partner_med_6b" model="res.partner">
+            <field name="name">Dương Bích Thảo</field>
+            <field name="parent_id" ref="demo_company_xyz"/>
+            <field name="function">Operations Supervisor</field>
+            <field name="email">thao.duong@xyzlogistics.com</field>
+            <field name="phone">0944888222</field>
+            <field name="city">Da Nang</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+
+        <!-- ================================================================= -->
+        <!-- 3 PAIRS: LOW / VERY LOW MATCH (0% - 39%)                          -->
+        <!-- ================================================================= -->
+        <!-- PAIR 7 -->
+        <record id="demo_partner_low_7a" model="res.partner">
+            <field name="name">Nguyễn Văn Hùng</field>
+            <field name="parent_id" ref="demo_company_abc"/>
+            <field name="function">Chief Accountant</field>
+            <field name="email">hung.ketoan@abctrading.vn</field>
+            <field name="phone">0911000111</field>
+            <field name="city">Can Tho</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+        <record id="demo_partner_low_7b" model="res.partner">
+            <field name="name">Trần Quốc Đạt</field>
+            <field name="parent_id" ref="demo_company_delta"/>
+            <field name="function">Project Architect</field>
+            <field name="email">dat.arch@deltagroup.vn</field>
+            <field name="phone">0988999000</field>
+            <field name="city">Hai Phong</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+
+        <!-- PAIR 8 -->
+        <record id="demo_partner_low_8a" model="res.partner">
+            <field name="name">Bùi Thúy Hằng</field>
+            <field name="parent_id" ref="demo_company_tech"/>
+            <field name="function">HR Executive</field>
+            <field name="email">hang.hr@saigontech.vn</field>
+            <field name="phone">0934112233</field>
+            <field name="city">Da Nang</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+        <record id="demo_partner_low_8b" model="res.partner">
+            <field name="name">Lý Thanh Tùng</field>
+            <field name="parent_id" ref="demo_company_delta"/>
+            <field name="function">Site Engineer</field>
+            <field name="email">tung.site@deltagroup.vn</field>
+            <field name="phone">0922883344</field>
+            <field name="city">Binh Duong</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+
+        <!-- PAIR 9 -->
+        <record id="demo_partner_low_9a" model="res.partner">
+            <field name="name">Đặng Thu Trang</field>
+            <field name="parent_id" ref="demo_company_xyz"/>
+            <field name="function">Import Clerk</field>
+            <field name="email">trang.import@xyzlogistics.com</field>
+            <field name="phone">0966445566</field>
+            <field name="city">Vung Tau</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+        <record id="demo_partner_low_9b" model="res.partner">
+            <field name="name">Cao Xuân Hưng</field>
+            <field name="parent_id" ref="demo_company_delta"/>
+            <field name="function">Procurement Lead</field>
+            <field name="email">hung.procure@deltagroup.vn</field>
+            <field name="phone">0955112233</field>
+            <field name="city">Nha Trang</field>
+            <field name="country_id" ref="base.vn"/>
+        </record>
+    </data>
+</odoo>

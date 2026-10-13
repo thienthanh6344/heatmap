@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_sgt_contact_match" model="ir.sequence">
+            <field name="name">SGT Contact Match Sequence</field>
+            <field name="code">sgt.contact.match</field>
+            <field name="prefix">MTCH/%(range_year)s/</field>
+            <field name="padding">4</field>
+            <field name="use_date_range">True</field>
+        </record>
+    </data>
+</odoo>

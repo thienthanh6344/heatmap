@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- PROJECT ATTRIBUTE TREE VIEW -->
+    <record id="view_sgt_project_attribute_tree" model="ir.ui.view">
+        <field name="name">sgt.project.attribute.list</field>
+        <field name="model">sgt.project.attribute</field>
+        <field name="arch" type="xml">
+            <list string="Project Custom Attributes">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="field_type" widget="badge"/>
+                <field name="unit"/>
+                <field name="required"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- PROJECT ATTRIBUTE FORM VIEW -->
+    <record id="view_sgt_project_attribute_form" model="ir.ui.view">
+        <field name="name">sgt.project.attribute.form</field>
+        <field name="model">sgt.project.attribute</field>
+        <field name="arch" type="xml">
+            <form string="Project Custom Attribute">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Capacity, Investment, Technology..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Technical Settings">
+                            <field name="code" placeholder="e.g. capacity, investment, technology"/>
+                            <field name="field_type"/>
+                            <field name="unit" placeholder="e.g. MW, USD, m², VND, Employees"/>
+                        </group>
+                        <group string="Behavior &amp; Sequence">
+                            <field name="required"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group string="Selection Options" invisible="field_type != 'selection'">
+                        <field name="selection_options" placeholder="Enter one option per line or separated by comma:&#10;Solar&#10;Wind&#10;Hydro&#10;Biomass"/>
+                    </group>
+                    <group string="Description &amp; Guidance">
+                        <field name="description" placeholder="Notes on how this attribute should be used across projects..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- PROJECT ATTRIBUTE ACTION -->
+    <record id="action_sgt_project_attribute" model="ir.actions.act_window">
+        <field name="name">Project Attributes</field>
+        <field name="res_model">sgt.project.attribute</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create custom attributes for projects (EAV dynamic schema).
+            </p>
+            <p>
+                Add attributes like Capacity, Investment, Technology, Factory Type, Employees, etc.
+                Each project can selectively have different sets of attributes without database changes.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_sgt_matchmaking" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.sgt.matchmaking</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Header Button: Find Matching Companies (Task 20) -->
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_find_matching_companies"
+                            string="Find Matching Companies"
+                            type="object"
+                            class="btn-primary"
+                            icon="fa-handshake-o"/>
+                </header>
+            </xpath>
+
+            <!-- Stat buttons in button box -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <!-- Task 20 Top 10 Matchmaking Button -->
+                <button name="action_find_matching_companies"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-handshake-o"
+                        title="Propose TOP 10 matching companies/contacts">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Top 10</span>
+                        <span class="o_stat_text">Matches</span>
+                    </div>
+                </button>
+
+                <!-- Task 19 Pairwise History Button -->
+                <button name="action_view_matches"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-balance-scale"
+                        title="View comparison match history for this contact">
+                    <field name="match_count" widget="statinfo" string="Match Contacts"/>
+                </button>
+                <button name="action_start_match_making"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-bolt"
+                        title="Start pairwise Match Making against another contact">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Match</span>
+                        <span class="o_stat_text">Making</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <!-- Notebook Tab: Matchmaking Profile -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Matchmaking Profile" name="matchmaking_profile">
+                    <group>
+                        <group string="Matchmaking Criteria (Task 20)">
+                            <field name="x_type_contact" widget="radio" options="{'horizontal': true}"/>
+                            <field name="x_product_category" placeholder="e.g. Electronics, Software"/>
+                            <field name="x_event" placeholder="e.g. Vietnam Expo 2026, Saigon Tech Fair"/>
+                            <field name="x_fb_industry" placeholder="e.g. Technology, Manufacturing"/>
+                        </group>
+                        <group string="Product Details &amp; Specifications">
+                            <field name="x_product_details" placeholder="Detailed product specifications or catalogue..."/>
+                        </group>
+                    </group>
+                    <group string="Dự án Liên kết &amp; Vị trí Bản đồ nhiệt (Vietnam Projects)">
+                        <field name="project_ids" widget="many2many_tags" placeholder="Chọn các dự án (Gearea, Argo, YingBo...)"/>
+                        <field name="contact_province" placeholder="VD: Bình Dương, TP.HCM, Quảng Ninh..."/>
+                        <field name="contact_district" placeholder="VD: Bến Cát, Long Thành, Hạ Long..."/>
+                        <field name="contact_ward" placeholder="VD: Phường Thới Hòa, Xã Lộc An..."/>
+                        <field name="location_source" readonly="1"/>
+                        <field name="geocoded_at" readonly="1"/>
+                        <field name="contact_has_coordinates" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Context Actions on res.partner (Action Menu) -->
+    <record id="action_partner_find_matching_companies_context" model="ir.actions.server">
+        <field name="name">Find Matching Companies (Top 10)</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_find_matching_companies()</field>
+    </record>
+
+    <record id="action_partner_start_matchmaking_context" model="ir.actions.server">
+        <field name="name">Match Making with another Contact</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">form</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_start_match_making()</field>
+    </record>
+</odoo>

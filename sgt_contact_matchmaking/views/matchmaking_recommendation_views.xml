@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- RECOMMENDATION WIZARD FORM VIEW -->
+    <record id="view_sgt_matchmaking_recommendation_wizard_form" model="ir.ui.view">
+        <field name="name">sgt.matchmaking.recommendation.wizard.form</field>
+        <field name="model">sgt.matchmaking.recommendation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Matchmaking Recommendations (Top 10)">
+                <header>
+                    <button name="action_calculate_recommendations"
+                            type="object"
+                            string="Re-run Matchmaking Analysis"
+                            class="btn-primary"
+                            icon="fa-refresh"/>
+                </header>
+                <sheet>
+                    <!-- CONFIG FILTER PANEL -->
+                    <div class="row align-items-center mb-3 p-3 bg-light rounded border">
+                        <div class="col-md-5">
+                            <label for="source_partner_id" class="form-label fw-bold text-primary">
+                                <i class="fa fa-building-o me-1"/> Source Contact / Company
+                            </label>
+                            <field name="source_partner_id" readonly="1" class="fw-bold fs-5 text-dark"/>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="limit" class="form-label fw-bold text-muted">
+                                Top Recommendations Limit
+                            </label>
+                            <field name="limit" class="form-control-sm"/>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex justify-content-end gap-2 text-muted small">
+                                <span><strong>Analyzed:</strong> <field name="total_candidates" readonly="1"/></span>
+                                <span>•</span>
+                                <span><strong>Matches:</strong> <field name="total_matches" readonly="1"/></span>
+                                <span>•</span>
+                                <span><strong>Best Score:</strong> <field name="max_score" readonly="1"/>/95</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MODERN DASHBOARD VIEW -->
+                    <field name="html_dashboard" widget="html" readonly="1" nolabel="1"/>
+
+                    <!-- DETAILED LINES TAB (OPTIONAL AUDIT VIEW) -->
+                    <notebook>
+                        <page string="Detailed Candidates Table (Audit)" name="candidates_table">
+                            <field name="line_ids" readonly="1">
+                                <list string="Recommendations" decoration-success="score &gt;= 80" decoration-info="score &gt;= 60 and score &lt; 80" decoration-warning="score &gt;= 40 and score &lt; 60">
+                                    <field name="rank" string="#"/>
+                                    <field name="partner_id" string="Company / Contact"/>
+                                    <field name="score" string="Match Score (Max 95)" widget="progressbar" options="{'max_value': 95}"/>
+                                    <field name="category_score" string="Category (+30)"/>
+                                    <field name="industry_score" string="Industry (+20)"/>
+                                    <field name="event_score" string="Event (+20)"/>
+                                    <field name="buyer_seller_score" string="Buyer/Seller (+20)"/>
+                                    <field name="country_score" string="Country (+5)"/>
+                                    <field name="reasons_display" string="Reasons Summary"/>
+                                    <button name="action_open_candidate"
+                                            type="object"
+                                            string="View"
+                                            icon="fa-external-link"
+                                            class="btn-sm btn-outline-primary"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ACTION TO LAUNCH RECOMMENDATION WIZARD -->
+    <record id="action_sgt_matchmaking_recommendation_wizard" model="ir.actions.act_window">
+        <field name="name">Find Matching Companies</field>
+        <field name="res_model">sgt.matchmaking.recommendation.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'dialog_size': 'extra-large'}</field>
+    </record>
+</odoo>

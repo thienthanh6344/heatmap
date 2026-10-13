@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sgt_contact_match_wizard_form" model="ir.ui.view">
+        <field name="name">sgt.contact.match.wizard.form</field>
+        <field name="model">sgt.contact.match.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Contact Match Making">
+                <!-- HERO HEADER -->
+                <div class="sgt-match-wizard-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h2 class="sgt-match-wizard-title">
+                                <i class="fa fa-balance-scale"/> Contact Match Making
+                            </h2>
+                            <p class="sgt-match-wizard-subtitle">
+                                Compare two contacts and identify their similarity with explainable weighted scoring
+                            </p>
+                        </div>
+                        <div invisible="not has_result">
+                            <span class="badge rounded-pill px-3 py-2 fs-6 shadow-sm"
+                                  t-attf-class="badge-{{ badge_class }}"
+                                  style="background: #ffffff; color: #1e3a8a; font-weight: 800;">
+                                <field name="score" readonly="1" class="me-1"/>% MATCH
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SELECTION PANEL -->
+                <div class="sgt-match-select-box">
+                    <div class="row align-items-end g-3">
+                        <div class="col-md-5">
+                            <label for="contact_a_id" class="form-label fw-bold text-primary">
+                                <i class="fa fa-user me-1"/> Contact A (Primary)
+                            </label>
+                            <field name="contact_a_id"
+                                   placeholder="Search primary contact by name, email, or phone..."
+                                   options="{'no_create': True, 'no_quick_create': True}"
+                                   class="form-control-lg border-primary-subtle"/>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="contact_b_id" class="form-label fw-bold text-teal" style="color: #0d9488;">
+                                <i class="fa fa-user me-1"/> Contact B (Comparison Target)
+                            </label>
+                            <field name="contact_b_id"
+                                   placeholder="Search secondary contact to compare against Contact A..."
+                                   options="{'no_create': True, 'no_quick_create': True}"
+                                   class="form-control-lg border-info-subtle"/>
+                        </div>
+                        <div class="col-md-2 d-grid gap-2">
+                            <button name="action_compare_and_match"
+                                    type="object"
+                                    string="Compare &amp; Match"
+                                    class="btn btn-primary btn-lg shadow-sm"
+                                    icon="fa-bolt"/>
+                        </div>
+                    </div>
+
+                    <!-- CONTROL BUTTONS WHEN RESULT IS PRESENT -->
+                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top" invisible="not has_result">
+                        <div class="d-flex gap-2">
+                            <button name="action_view_history_record"
+                                    type="object"
+                                    string="View in Match History"
+                                    class="btn btn-sm btn-outline-primary"
+                                    icon="fa-external-link"/>
+                            <button name="action_reset"
+                                    type="object"
+                                    string="Clear / New Match"
+                                    class="btn btn-sm btn-outline-secondary"
+                                    icon="fa-refresh"/>
+                        </div>
+                        <div class="text-muted small">
+                            <i class="fa fa-check-circle text-success me-1"/>
+                            Kết quả đã được tính toán và lưu tự động vào Lịch sử Match.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EMPTY STATE GUIDANCE -->
+                <div class="text-center py-5 px-3 bg-light rounded-3 border border-dashed my-3" invisible="has_result">
+                    <div class="mb-3">
+                        <i class="fa fa-users fa-3x text-muted" title="Contact Match Guidance" style="opacity: 0.5;"/>
+                    </div>
+                    <h5 class="text-secondary fw-bold">Chọn 2 Contact và bấm "Compare &amp; Match"</h5>
+                    <p class="text-muted small max-w-md mx-auto" style="max-width: 480px;">
+                        Hệ thống sẽ chuẩn hóa dữ liệu (Email, Số điện thoại, Tên tiếng Việt, Tên công ty) và phân tích đối soát trọng số từng tiêu chí để xác định độ tương đồng.
+                    </p>
+                </div>
+
+                <!-- RESULT DASHBOARD DISPLAY -->
+                <field name="has_result" invisible="1"/>
+                <field name="badge_class" invisible="1"/>
+                <field name="saved_match_id" invisible="1"/>
+                <div invisible="not has_result">
+                    <field name="result_html" readonly="1" nolabel="1"/>
+                </div>
+
+                <!-- FOOTER -->
+                <footer>
+                    <button string="Close" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Action -->
+    <record id="action_sgt_contact_match_wizard" model="ir.actions.act_window">
+        <field name="name">Contact Match Making</field>
+        <field name="res_model">sgt.contact.match.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

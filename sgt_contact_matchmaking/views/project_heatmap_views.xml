@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- PROJECT HEATMAP LIST VIEW -->
+    <record id="view_sgt_project_heatmap_tree" model="ir.ui.view">
+        <field name="name">sgt.project.heatmap.list</field>
+        <field name="model">sgt.project.heatmap</field>
+        <field name="arch" type="xml">
+            <list string="Vietnam Projects" decoration-success="status == 'active'" decoration-info="status == 'planning'" decoration-muted="status == 'completed'" decoration-danger="status == 'cancelled'">
+                <field name="sequence" widget="handle"/>
+                <field name="name" string="Project Name"/>
+                <field name="code" optional="show"/>
+                <field name="project_type" widget="badge"/>
+                <field name="province" optional="show"/>
+                <field name="district" optional="hide"/>
+                <field name="industry" optional="show"/>
+                <field name="owner" optional="show"/>
+                <field name="status" widget="badge"
+                       decoration-success="status == 'active'"
+                       decoration-info="status == 'planning'"
+                       decoration-muted="status == 'completed'"
+                       decoration-danger="status == 'cancelled'"/>
+                <field name="latitude" optional="hide"/>
+                <field name="longitude" optional="hide"/>
+                <field name="has_coordinates" string="Mapped" widget="boolean" optional="show"/>
+                <field name="active" widget="boolean_toggle" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- PROJECT HEATMAP FORM VIEW -->
+    <record id="view_sgt_project_heatmap_form" model="ir.ui.view">
+        <field name="name">sgt.project.heatmap.form</field>
+        <field name="model">sgt.project.heatmap</field>
+        <field name="arch" type="xml">
+            <form string="Project Details">
+                <header>
+                    <button name="action_view_project_heatmap" type="object" string="Xem Bản đồ nhiệt Dự án này" class="btn-info" icon="fa-fire"/>
+                    <button name="action_geocode_goong" type="object" string="Get Coordinates from Goong" class="btn-primary" icon="fa-map-marker"/>
+                    <button name="action_view_details" type="object" string="Refresh" class="btn-secondary" icon="fa-refresh"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,planning,active,completed,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_project_heatmap" type="object" class="oe_stat_button" icon="fa-fire">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Bản đồ nhiệt</span>
+                                <span class="o_stat_text">Dự án</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="action_view_details" icon="fa-users">
+                            <field name="total_contacts" widget="statinfo" string="Contacts"/>
+                        </button>
+                    </div>
+
+                    <!-- WARNING ALERT IF MISSING COORDINATES -->
+                    <div class="alert alert-warning d-flex align-items-center mb-3" role="alert" invisible="has_coordinates">
+                        <i class="fa fa-exclamation-triangle fa-2x me-3 text-warning"/>
+                        <div>
+                            <strong>Location Coordinates Notice:</strong>
+                            <span class="ms-1">Latitude / Longitude are not provided or invalid. This project will not appear on the Vietnam Map / Heatmap until GPS coordinates are entered or retrieved via Goong.</span>
+                        </div>
+                    </div>
+
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Project Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. GEAREA Solar Power Plant, ARGO Wind Farm..."/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Basic Project Information">
+                            <field name="code" placeholder="e.g. PRJ-GEAREA-01"/>
+                            <field name="project_type"/>
+                            <field name="industry" placeholder="e.g. Energy, Solar, Technology"/>
+                            <field name="industry_id"/>
+                            <field name="owner" placeholder="e.g. ABC Energy Group"/>
+                            <field name="company_id"/>
+                            <field name="contact_id"/>
+                            <field name="event_id" placeholder="e.g. Vietnam Expo 2026"/>
+                        </group>
+                        <group string="Geographic Location (Vietnam)">
+                            <field name="country_id"/>
+                            <field name="province" placeholder="e.g. Bình Dương, Đồng Nai, Quảng Ninh"/>
+                            <field name="district" placeholder="e.g. Bến Cát, Long Thành, Hạ Long"/>
+                            <field name="ward" placeholder="e.g. Phường Thới Hòa"/>
+                            <field name="address" placeholder="e.g. KCN Mỹ Phước 3"/>
+                            <field name="latitude" placeholder="e.g. 11.1568"/>
+                            <field name="longitude" placeholder="e.g. 106.6342"/>
+                            <field name="weight"/>
+                            <field name="has_coordinates" readonly="1"/>
+                            <field name="location_source" readonly="1"/>
+                            <field name="geocoding_status" widget="badge" decoration-success="geocoding_status == 'success'" decoration-danger="geocoding_status == 'failed'"/>
+                            <field name="geocoded_at" readonly="1"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- DYNAMIC CUSTOM ATTRIBUTES TAB -->
+                        <page string="Dynamic Attributes" name="dynamic_attributes">
+                            <p class="text-muted small mb-2">
+                                Configure arbitrary custom attributes tailored for this project (e.g. Capacity, Investment, Technology, Factory Type, Employees, etc.).
+                            </p>
+                            <field name="attribute_value_ids">
+                                <list editable="bottom" string="Project Attributes">
+                                    <field name="attribute_id" required="1"/>
+                                    <field name="field_type" readonly="1"/>
+                                    <field name="value_text" invisible="field_type != 'text'" placeholder="Text value"/>
+                                    <field name="value_number" invisible="field_type != 'number'" placeholder="0.00"/>
+                                    <field name="value_boolean" invisible="field_type != 'boolean'"/>
+                                    <field name="value_date" invisible="field_type != 'date'"/>
+                                    <field name="value_selection" invisible="field_type != 'selection'" placeholder="Selection option"/>
+                                    <field name="unit" readonly="1"/>
+                                    <field name="display_value" readonly="1" string="Formatted Value"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- HEATMAP SUB-POINTS (DETAILED SITES) TAB -->
+                        <page string="Heatmap Sub-Points (Điểm nhiệt chi tiết)" name="heatmap_subpoints">
+                            <p class="text-muted small mb-2">
+                                Khai báo các phân khu, trạm biến áp, cụm tuabin, hoặc nhà xưởng con để tạo bản đồ nhiệt đa điểm chuyên sâu cho riêng dự án này. Nếu không có điểm con, hệ thống sẽ sử dụng tọa độ chính của dự án.
+                            </p>
+                            <field name="point_ids">
+                                <list editable="bottom" string="Heatmap Points">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name" string="Tên điểm / Hạng mục" placeholder="VD: Cụm pin A1, Trụ tuabin 1, Nhà xưởng 2..."/>
+                                    <field name="point_type" widget="badge"/>
+                                    <field name="latitude" placeholder="11.1568"/>
+                                    <field name="longitude" placeholder="106.6342"/>
+                                    <field name="weight" string="Trọng số nhiệt"/>
+                                    <field name="address" optional="show" placeholder="Địa chỉ chi tiết"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- PROJECT CONTACTS TAB -->
+                        <page string="Project Contacts (Danh sách Doanh nghiệp / Đối tác)" name="project_contacts">
+                            <p class="text-muted small mb-2">
+                                Danh sách các doanh nghiệp, nhà cung cấp (Sellers), đối tác mua hàng (Buyers), hoặc nhà thầu phụ thuộc dự án này. Tọa độ GPS của từng Contact sẽ tạo nên Bản đồ nhiệt chuyên biệt (Heatmap) cho riêng dự án.
+                            </p>
+                            <field name="partner_ids">
+                                <list string="Project Contacts">
+                                    <field name="name" string="Doanh nghiệp / Liên hệ"/>
+                                    <field name="is_company" string="Là Công ty"/>
+                                    <field name="x_type_contact" widget="badge" string="Vai trò"/>
+                                    <field name="contact_province" string="Tỉnh / Thành"/>
+                                    <field name="contact_district" string="Quận / Huyện" optional="show"/>
+                                    <field name="phone" optional="show"/>
+                                    <field name="email" optional="show"/>
+                                    <field name="x_product_category" string="Ngành hàng" optional="show"/>
+                                    <field name="contact_has_coordinates" string="Đã có tọa độ" widget="boolean"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- DESCRIPTION TAB -->
+                        <page string="Description &amp; Notes" name="description_tab">
+                            <field name="description" placeholder="Detailed technical scope, milestones, environmental impact, or investor specifications..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- PROJECT HEATMAP SEARCH VIEW -->
+    <record id="view_sgt_project_heatmap_search" model="ir.ui.view">
+        <field name="name">sgt.project.heatmap.search</field>
+        <field name="model">sgt.project.heatmap</field>
+        <field name="arch" type="xml">
+            <search string="Search Projects">
+                <field name="name" string="Project Name"/>
+                <field name="code"/>
+                <field name="province"/>
+                <field name="district"/>
+                <field name="industry"/>
+                <field name="owner"/>
+                <field name="company_id"/>
+
+                <filter string="Active Projects" name="filter_active" domain="[('status', '=', 'active')]"/>
+                <filter string="Planning Projects" name="filter_planning" domain="[('status', '=', 'planning')]"/>
+                <filter string="With Coordinates (Mapped)" name="filter_mapped" domain="[('has_coordinates', '=', True)]"/>
+                <separator/>
+                <filter string="Archived" name="filter_archived" domain="[('active', '=', False)]"/>
+
+                <group>
+                    <filter string="Province" name="group_province" context="{'group_by': 'province'}"/>
+                    <filter string="Status" name="group_status" context="{'group_by': 'status'}"/>
+                    <filter string="Project Type" name="group_type" context="{'group_by': 'project_type'}"/>
+                    <filter string="Industry" name="group_industry" context="{'group_by': 'industry'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- STANDARD PROJECTS WINDOW ACTION -->
+    <record id="action_sgt_project_heatmap_records" model="ir.actions.act_window">
+        <field name="name">Vietnam Projects</field>
+        <field name="res_model">sgt.project.heatmap</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_sgt_project_heatmap_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Vietnam Project!
+            </p>
+            <p>
+                Add projects (like GEAREA, ARGO, YINGBO) with custom dynamic attributes and location coordinates.
+            </p>
+        </field>
+    </record>
+
+    <!-- VIETNAM PROJECT HEATMAP CLIENT DASHBOARD ACTION -->
+    <record id="action_sgt_project_heatmap_dashboard" model="ir.actions.client">
+        <field name="name">Vietnam Project Heatmap</field>
+        <field name="tag">sgt_project_heatmap_dashboard</field>
+        <field name="target">main</field>
+    </record>
+</odoo>

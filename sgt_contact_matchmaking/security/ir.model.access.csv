@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sgt_contact_match_user,sgt.contact.match.user,model_sgt_contact_match,base.group_user,1,1,1,0
+access_sgt_contact_match_manager,sgt.contact.match.manager,model_sgt_contact_match,group_contact_match_manager,1,1,1,1
+access_sgt_contact_match_wizard_user,sgt.contact.match.wizard.user,model_sgt_contact_match_wizard,base.group_user,1,1,1,1
+access_sgt_contact_match_wizard_manager,sgt.contact.match.wizard.manager,model_sgt_contact_match_wizard,group_contact_match_manager,1,1,1,1
+access_sgt_matchmaking_recommendation_wizard_user,sgt.matchmaking.recommendation.wizard.user,model_sgt_matchmaking_recommendation_wizard,base.group_user,1,1,1,1
+access_sgt_matchmaking_recommendation_wizard_manager,sgt.matchmaking.recommendation.wizard.manager,model_sgt_matchmaking_recommendation_wizard,group_contact_match_manager,1,1,1,1
+access_sgt_matchmaking_recommendation_wizard_line_user,sgt.matchmaking.recommendation.wizard.line.user,model_sgt_matchmaking_recommendation_wizard_line,base.group_user,1,1,1,1
+access_sgt_matchmaking_recommendation_wizard_line_manager,sgt.matchmaking.recommendation.wizard.line.manager,model_sgt_matchmaking_recommendation_wizard_line,group_contact_match_manager,1,1,1,1
+access_sgt_project_heatmap_user,sgt.project.heatmap.user,model_sgt_project_heatmap,base.group_user,1,1,1,0
+access_sgt_project_heatmap_manager,sgt.project.heatmap.manager,model_sgt_project_heatmap,group_contact_match_manager,1,1,1,1
+access_sgt_project_attribute_user,sgt.project.attribute.user,model_sgt_project_attribute,base.group_user,1,1,1,0
+access_sgt_project_attribute_manager,sgt.project.attribute.manager,model_sgt_project_attribute,group_contact_match_manager,1,1,1,1
+access_sgt_project_attribute_value_user,sgt.project.attribute.value.user,model_sgt_project_attribute_value,base.group_user,1,1,1,1
+access_sgt_project_attribute_value_manager,sgt.project.attribute.value.manager,model_sgt_project_attribute_value,group_contact_match_manager,1,1,1,1
+access_sgt_project_heatmap_point_user,sgt.project.heatmap.point.user,model_sgt_project_heatmap_point,base.group_user,1,1,1,1
+access_sgt_project_heatmap_point_manager,sgt.project.heatmap.point.manager,model_sgt_project_heatmap_point,group_contact_match_manager,1,1,1,1
